@@ -70,3 +70,51 @@ To run the unit tests, first ensure that you have followed the steps above in or
   ```shell
   karma start
   ```
+
+## Notes
+
+[sails.io.js](https://github.com/balderdashy/sails.io.js) is not prepared for jspm. When you are installing it, use this command:
+
+   ```shell
+   jspm install sails.io.js=github:balderdashy/sails.io.js@^0.11.5 -o '{ main: "dist/sails.io.js", format: "global" }'
+   ```
+
+> If you know better way how to include this library, let me know.
+
+## Example
+
+Create file `sails.js` with this content:
+
+  ```js
+  import { SailsSocketClient } from 'aurelia-sails-socket-client';
+  import 'sails.io.js'; // This will load sails.io to window.io
+
+  let io = window.io;
+
+  // Export service factory, so we can use inject
+  export default function() {
+    return new SailsSocketClient(io.socket);
+  }
+  ```
+
+Now you can use it in you classes:
+
+  ```js
+  import { inject } from 'aurelia-framework';
+  import Sails from './sails';
+
+  @inject(Sails)
+  export class Login {
+
+    constructor(sails) {
+      this.sails = sails;
+    }
+
+    login(credentials) {
+      this.sails.post("/login", credentials)
+        .then((response) => alert("Success"))
+        .catch((response) => alert("Wrong"));
+    }
+
+  }
+  ```
