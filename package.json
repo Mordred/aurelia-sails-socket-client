@@ -1,0 +1,92 @@
+{
+  "name": "aurelia-sails-socket-client",
+  "version": "0.7.0",
+  "description": "A simple, restful, message-based wrapper around sails.io client.",
+  "keywords": [
+    "aurelia",
+    "sails",
+    "sailsjs",
+    "socket"
+  ],
+  "homepage": "http://aurelia.io",
+  "bugs": {
+    "url": "https://github.com/Mordred/aurelia-sails-socket-client/issues"
+  },
+  "license": "MIT",
+  "author": "Martin Jantosovic <jantosovic.martin@gmail.com>",
+  "main": "dist/commonjs/index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Mordred/aurelia-sails-socket-client"
+  },
+  "jspm": {
+    "main": "index",
+    "format": "register",
+    "directories": {
+      "lib": "dist/system"
+    },
+    "dependencies": {
+      "aurelia-path": "github:aurelia/path@^0.5.0",
+      "core-js": "github:zloirock/core-js@^0.8.1",
+      "sails.io.js": "github:balderdashy/sails.io.js@^0.11.5"
+    },
+    "devDependencies": {
+      "traceur": "github:jmcriffey/bower-traceur@0.0.87",
+      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.87"
+    },
+    "overrides": {
+      "github:balderdashy/sails.io.js@0.11.5": {
+        "main": "dist/sails.io.js",
+        "format": "global"
+      }
+    }
+  },
+  "devDependencies": {
+    "aurelia-tools": "^0.1.3",
+    "conventional-changelog": "0.0.11",
+    "del": "^1.1.0",
+    "gulp": "^3.8.10",
+    "gulp-babel": "^5.0.0",
+    "gulp-bump": "^0.1.11",
+    "gulp-jshint": "^1.9.0",
+    "gulp-yuidoc": "^0.1.2",
+    "jasmine-core": "^2.1.3",
+    "jshint-stylish": "^1.0.0",
+    "karma": "^0.12.28",
+    "karma-babel-preprocessor": "^5.0.1",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.5",
+    "karma-jasmine-ajax": "git://github.com/martingust/karma-jasmine-ajax.git",
+    "karma-jspm": "^1.1.4",
+    "object.assign": "^1.0.3",
+    "require-dir": "^0.1.0",
+    "run-sequence": "^1.0.2",
+    "vinyl-paths": "^1.0.0",
+    "yargs": "^2.1.1"
+  },
+  "aurelia": {
+    "usedBy": [],
+    "documentation": {
+      "links": [
+        {
+          "rel": "license",
+          "mediaType": "text/plain",
+          "title": "The MIT License (MIT)",
+          "href": "LICENSE"
+        },
+        {
+          "rel": "describedby",
+          "mediaType": "application/aurelia-doc+json",
+          "title": "API",
+          "href": "doc/api.json"
+        },
+        {
+          "rel": "version-history",
+          "mediaType": "text/markdown",
+          "title": "Change Log",
+          "href": "doc/CHANGELOG.md"
+        }
+      ]
+    }
+  }
+}
