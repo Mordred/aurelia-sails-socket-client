@@ -20,7 +20,7 @@ export function CSRFTransformerFactory(uri) {
           setCsrfToken(message, client.CSRFToken);
           resolve();
         }).catch(reject);
-      })
+      });
     }
-  }
+  };
 }
