@@ -46,6 +46,12 @@ define(['exports', 'core-js', './headers', './request-builder', './socket-reques
     }
 
     _createClass(SailsSocketClient, [{
+      key: 'setSocket',
+      value: function setSocket(socket) {
+        this.socket = socket;
+        return this;
+      }
+    }, {
       key: 'configure',
       value: function configure(fn) {
         var builder = new _requestBuilder.RequestBuilder(this);

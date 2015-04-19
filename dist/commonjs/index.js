@@ -7,8 +7,11 @@ var _defaults = function (obj, defaults) { var keys = Object.getOwnPropertyNames
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+exports.install = install;
 
 var _SailsSocketClient = require('./sails-socket-client');
+
+require('sails.io.js');
 
 Object.defineProperty(exports, 'SailsSocketClient', {
   enumerable: true,
@@ -20,3 +23,19 @@ Object.defineProperty(exports, 'SailsSocketClient', {
 var _transformers = require('./transformers');
 
 _defaults(exports, _interopRequireWildcard(_transformers));
+
+var io = window.io;
+io.sails.autoConnect = false;
+
+function install(aurelia, configCallback) {
+
+  var sails = new _SailsSocketClient.SailsSocketClient();
+
+  if (configCallback !== undefined && typeof configCallback === 'function') {
+    configCallback(sails, io);
+  }
+
+  sails.setSocket(io.sails.connect());
+
+  aurelia.container.registerInstance(_SailsSocketClient.SailsSocketClient, sails);
+}

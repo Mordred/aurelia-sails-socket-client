@@ -12,7 +12,7 @@ export class RequestBuilder {
     RequestBuilder.prototype[name] = function() {
       this.transformers.push(fn.apply(this, arguments));
       return this;
-    }
+    };
   }
 
   send() {

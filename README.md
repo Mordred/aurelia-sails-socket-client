@@ -83,17 +83,22 @@ To run the unit tests, first ensure that you have followed the steps above in or
 
 ## Example
 
-Create file `sails.js` with this content:
+### Load the plugin
+
+During bootstrapping phase, you can now include the sails socket client plugin:
 
   ```js
-  import { SailsSocketClient } from 'aurelia-sails-socket-client';
-  import 'sails.io.js'; // This will load sails.io to window.io
+  export function configure(aurelia) {
+    aurelia.use
+      .standardConfiguration()
+      .developmentLogging()
+      .plugin('aurelia-sails-socket-client', (sails, io) => {
+        sails.configure(x => {
+          x.withBaseUri('/api/v1');
+        });
+      });
 
-  let io = window.io;
-
-  // Export service factory, so we can use inject
-  export default function() {
-    return new SailsSocketClient(io.socket);
+    aurelia.start().then(a => a.setRoot('app', document.body));
   }
   ```
 
@@ -101,9 +106,9 @@ Now you can use it in you classes:
 
   ```js
   import { inject } from 'aurelia-framework';
-  import Sails from './sails';
+  import SailsSocketClient from 'aurelia-sails-socket-client';
 
-  @inject(Sails)
+  @inject(SailsSocketClient)
   export class Login {
 
     constructor(sails) {

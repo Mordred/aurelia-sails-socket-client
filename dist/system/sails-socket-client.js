@@ -52,6 +52,12 @@ System.register(['core-js', './headers', './request-builder', './socket-request-
         }
 
         _createClass(SailsSocketClient, [{
+          key: 'setSocket',
+          value: function setSocket(socket) {
+            this.socket = socket;
+            return this;
+          }
+        }, {
           key: 'configure',
           value: function configure(fn) {
             var builder = new RequestBuilder(this);

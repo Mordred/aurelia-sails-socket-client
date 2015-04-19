@@ -1,7 +1,7 @@
 import { join, buildQueryString } from 'aurelia-path';
 
 import { Headers } from './headers';
-import { RequestMessageProcessor } from './request-message-processor'
+import { RequestMessageProcessor } from './request-message-processor';
 
 function buildFullUri(message) {
 

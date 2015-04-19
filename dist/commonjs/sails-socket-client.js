@@ -53,6 +53,12 @@ var SailsSocketClient = (function () {
   }
 
   _createClass(SailsSocketClient, [{
+    key: 'setSocket',
+    value: function setSocket(socket) {
+      this.socket = socket;
+      return this;
+    }
+  }, {
     key: 'configure',
     value: function configure(fn) {
       var builder = new _RequestBuilder.RequestBuilder(this);

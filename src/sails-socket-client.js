@@ -29,6 +29,11 @@ function trackRequestEnd(client, processor) {
  * @constructor
  */
 export class SailsSocketClient {
+
+  /**
+   * @constructor
+   * @param {SailsSocket|null} socket A sails socket instance
+   */
   constructor(socket) {
     this.socket = socket;
 
@@ -39,6 +44,19 @@ export class SailsSocketClient {
     this.pendingRequests = [];
     this.isRequesting = false;
   }
+
+  /**
+   * Change socket instance
+   *
+   * @method setSocket
+   * @param {SailsSocket} socket A sails socket instance
+   * @chainable
+   */
+  setSocket(socket) {
+    this.socket = socket;
+    return this;
+  }
+
 
   /**
    * Configure this SailsClient with default settings to be used by all requests.

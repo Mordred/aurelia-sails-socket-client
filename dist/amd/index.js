@@ -1,4 +1,4 @@
-define(['exports', './sails-socket-client', './transformers'], function (exports, _sailsSocketClient, _transformers) {
+define(['exports', './sails-socket-client', 'sails.io.js', './transformers'], function (exports, _sailsSocketClient, _sailsIoJs, _transformers) {
   'use strict';
 
   var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
@@ -8,6 +8,7 @@ define(['exports', './sails-socket-client', './transformers'], function (exports
   Object.defineProperty(exports, '__esModule', {
     value: true
   });
+  exports.install = install;
   Object.defineProperty(exports, 'SailsSocketClient', {
     enumerable: true,
     get: function get() {
@@ -16,4 +17,20 @@ define(['exports', './sails-socket-client', './transformers'], function (exports
   });
 
   _defaults(exports, _interopRequireWildcard(_transformers));
+
+  var io = window.io;
+  io.sails.autoConnect = false;
+
+  function install(aurelia, configCallback) {
+
+    var sails = new _sailsSocketClient.SailsSocketClient();
+
+    if (configCallback !== undefined && typeof configCallback === 'function') {
+      configCallback(sails, io);
+    }
+
+    sails.setSocket(io.sails.connect());
+
+    aurelia.container.registerInstance(_sailsSocketClient.SailsSocketClient, sails);
+  }
 });
