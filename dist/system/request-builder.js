@@ -19,14 +19,14 @@ System.register(['aurelia-path', './socket-request-message'], function (_export)
           _classCallCheck(this, RequestBuilder);
 
           this.client = client;
-          this.transformers = [];
+          this.transformers = client.requestTransformers.slice(0);
         }
 
         _createClass(RequestBuilder, [{
           key: 'send',
           value: function send() {
             var message = new SocketRequestMessage();
-            return this.client.send(message, [].concat(this.client.beforeRequestTransformers, this.transformers, this.client.afterRequestTransformers));
+            return this.client.send(message, this.transformers);
           }
         }], [{
           key: 'addHelper',

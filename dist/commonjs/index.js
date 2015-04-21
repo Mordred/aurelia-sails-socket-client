@@ -20,9 +20,9 @@ Object.defineProperty(exports, 'SailsSocketClient', {
   }
 });
 
-var _transformers = require('./transformers');
+var _interceptors = require('./interceptors');
 
-_defaults(exports, _interopRequireWildcard(_transformers));
+_defaults(exports, _interopRequireWildcard(_interceptors));
 
 var io = window.io;
 io.sails.autoConnect = false;

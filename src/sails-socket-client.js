@@ -38,8 +38,9 @@ export class SailsSocketClient {
     this.socket = socket;
 
     // Allow to set transformers before request and after request transformers
-    this.beforeRequestTransformers = [];
-    this.afterRequestTransformers = [];
+    this.requestTransformers = [];
+
+    this.interceptors = [];
 
     this.pendingRequests = [];
     this.isRequesting = false;
@@ -57,6 +58,22 @@ export class SailsSocketClient {
     return this;
   }
 
+  /**
+   * Add new interceptor
+   *
+   * NOTE: Interceptors are stored in reverse order. Inner interceptors before outer interceptors.
+   * This reversal is needed so that we can build up the interception chain around the
+   * server request.
+   *
+   * @method addInterceptor
+   * @param {Interceptor} interceptor A interceptor class
+   * @chainable
+   */
+  addInterceptor(interceptor) {
+    this.interceptors.unshift(interceptor);
+    return this;
+  }
+
 
   /**
    * Configure this SailsClient with default settings to be used by all requests.
@@ -68,7 +85,7 @@ export class SailsSocketClient {
   configure(fn) {
     var builder = new RequestBuilder(this);
     fn(builder);
-    this.beforeRequestTransformers = builder.transformers;
+    this.requestTransformers = builder.transformers;
     return this;
   }
 
@@ -103,13 +120,13 @@ export class SailsSocketClient {
     processor = createSocketRequestMessageProcessor();
     trackRequestStart(this, processor);
 
-    transformers = transformers || [].concat(this.beforeRequestTransformers, this.afterRequestTransformers);
+    transformers = transformers || this.requestTransformers;
 
     for(i = 0, ii = transformers.length; i < ii; ++i){
       transformPromises.push(transformers[i](this, processor, message));
     }
 
-    promise = Promise.all(transformPromises).then(() => {
+    var processRequest = (message) => {
       return processor.process(this, message).then(response => {
         trackRequestEnd(this, processor);
         return response;
@@ -117,7 +134,31 @@ export class SailsSocketClient {
         trackRequestEnd(this, processor);
         throw response;
       });
+    };
+
+    var chain = [ processRequest, undefined ];
+    // Apply interceptors
+    for (let interceptor of this.interceptors) {
+      if (interceptor.request || interceptor.requestError) {
+        chain.unshift(interceptor.requestError ? interceptor.requestError.bind(interceptor) : undefined);
+        chain.unshift(interceptor.request ? interceptor.request.bind(interceptor) : undefined);
+      }
+
+      if (interceptor.response || interceptor.responseError) {
+        chain.push(interceptor.response ? interceptor.response.bind(interceptor) : undefined);
+        chain.push(interceptor.responseError ? interceptor.responseError.bind(interceptor) : undefined);
+      }
+    }
+
+    promise = Promise.all(transformPromises).then(function() {
+      return message;
     });
+
+    while(chain.length) {
+      let thenFn = chain.shift();
+      let rejectFn = chain.shift();
+      promise = promise.then(thenFn, rejectFn);
+    }
 
     promise.abort = promise.cancel = function() {
       processor.abort();

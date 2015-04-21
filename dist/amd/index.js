@@ -1,4 +1,4 @@
-define(['exports', './sails-socket-client', 'sails.io.js', './transformers'], function (exports, _sailsSocketClient, _sailsIoJs, _transformers) {
+define(['exports', './sails-socket-client', 'sails.io.js', './interceptors'], function (exports, _sailsSocketClient, _sailsIoJs, _interceptors) {
   'use strict';
 
   var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
@@ -16,7 +16,7 @@ define(['exports', './sails-socket-client', 'sails.io.js', './transformers'], fu
     }
   });
 
-  _defaults(exports, _interopRequireWildcard(_transformers));
+  _defaults(exports, _interopRequireWildcard(_interceptors));
 
   var io = window.io;
   io.sails.autoConnect = false;

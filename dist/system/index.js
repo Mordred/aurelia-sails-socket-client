@@ -1,4 +1,4 @@
-System.register(['./sails-socket-client', 'sails.io.js', './transformers'], function (_export) {
+System.register(['./sails-socket-client', 'sails.io.js', './interceptors'], function (_export) {
   var SailsSocketClient, io;
 
   _export('install', install);
@@ -21,9 +21,9 @@ System.register(['./sails-socket-client', 'sails.io.js', './transformers'], func
       SailsSocketClient = _sailsSocketClient.SailsSocketClient;
 
       _export('SailsSocketClient', _sailsSocketClient.SailsSocketClient);
-    }, function (_sailsIoJs) {}, function (_transformers) {
-      for (var _key in _transformers) {
-        _export(_key, _transformers[_key]);
+    }, function (_sailsIoJs) {}, function (_interceptors) {
+      for (var _key in _interceptors) {
+        _export(_key, _interceptors[_key]);
       }
     }],
     execute: function () {

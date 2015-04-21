@@ -5,7 +5,7 @@ export class RequestBuilder {
 
   constructor(client) {
     this.client = client;
-    this.transformers = [];
+    this.transformers = client.requestTransformers.slice(0);
   }
 
   static addHelper(name, fn) {
@@ -17,9 +17,7 @@ export class RequestBuilder {
 
   send() {
     let message = new SocketRequestMessage();
-    return this.client.send(message,
-      [].concat(this.client.beforeRequestTransformers, this.transformers, this.client.afterRequestTransformers)
-    );
+    return this.client.send(message, this.transformers);
   }
 
 }

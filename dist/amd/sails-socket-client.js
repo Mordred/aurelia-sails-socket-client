@@ -38,8 +38,9 @@ define(['exports', 'core-js', './headers', './request-builder', './socket-reques
 
       this.socket = socket;
 
-      this.beforeRequestTransformers = [];
-      this.afterRequestTransformers = [];
+      this.requestTransformers = [];
+
+      this.interceptors = [];
 
       this.pendingRequests = [];
       this.isRequesting = false;
@@ -52,11 +53,17 @@ define(['exports', 'core-js', './headers', './request-builder', './socket-reques
         return this;
       }
     }, {
+      key: 'addInterceptor',
+      value: function addInterceptor(interceptor) {
+        this.interceptors.unshift(interceptor);
+        return this;
+      }
+    }, {
       key: 'configure',
       value: function configure(fn) {
         var builder = new _requestBuilder.RequestBuilder(this);
         fn(builder);
-        this.beforeRequestTransformers = builder.transformers;
+        this.requestTransformers = builder.transformers;
         return this;
       }
     }, {
@@ -84,13 +91,13 @@ define(['exports', 'core-js', './headers', './request-builder', './socket-reques
         processor = _socketRequestMessage.createSocketRequestMessageProcessor();
         trackRequestStart(this, processor);
 
-        transformers = transformers || [].concat(this.beforeRequestTransformers, this.afterRequestTransformers);
+        transformers = transformers || this.requestTransformers;
 
         for (i = 0, ii = transformers.length; i < ii; ++i) {
           transformPromises.push(transformers[i](this, processor, message));
         }
 
-        promise = Promise.all(transformPromises).then(function () {
+        var processRequest = function processRequest(message) {
           return processor.process(_this, message).then(function (response) {
             trackRequestEnd(_this, processor);
             return response;
@@ -98,7 +105,51 @@ define(['exports', 'core-js', './headers', './request-builder', './socket-reques
             trackRequestEnd(_this, processor);
             throw response;
           });
+        };
+
+        var chain = [processRequest, undefined];
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          for (var _iterator = this.interceptors[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var interceptor = _step.value;
+
+            if (interceptor.request || interceptor.requestError) {
+              chain.unshift(interceptor.requestError ? interceptor.requestError.bind(interceptor) : undefined);
+              chain.unshift(interceptor.request ? interceptor.request.bind(interceptor) : undefined);
+            }
+
+            if (interceptor.response || interceptor.responseError) {
+              chain.push(interceptor.response ? interceptor.response.bind(interceptor) : undefined);
+              chain.push(interceptor.responseError ? interceptor.responseError.bind(interceptor) : undefined);
+            }
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator['return']) {
+              _iterator['return']();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+
+        promise = Promise.all(transformPromises).then(function () {
+          return message;
         });
+
+        while (chain.length) {
+          var thenFn = chain.shift();
+          var rejectFn = chain.shift();
+          promise = promise.then(thenFn, rejectFn);
+        }
 
         promise.abort = promise.cancel = function () {
           processor.abort();

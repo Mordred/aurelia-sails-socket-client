@@ -1,5 +1,5 @@
 export {SailsSocketClient} from './sails-socket-client';
-export * from './transformers';
+export * from './interceptors';
 
 //import socketIOClient from 'sails.io.js/dependencies/socket.io.min';
 
