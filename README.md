@@ -88,6 +88,8 @@ To run the unit tests, first ensure that you have followed the steps above in or
 During bootstrapping phase, you can now include the sails socket client plugin:
 
   ```js
+  import { CSRFInterceptor } from 'aurelia-sails-socket-client';
+
   export function configure(aurelia) {
     aurelia.use
       .standardConfiguration()
@@ -96,6 +98,9 @@ During bootstrapping phase, you can now include the sails socket client plugin:
         sails.configure(x => {
           x.withBaseUri('/api/v1');
         });
+
+        // Example for CSRFInterceptor
+        sails.addInterceptor(new CSRFInterceptor('/csrfToken', sails));
       });
 
     aurelia.start().then(a => a.setRoot('app', document.body));
@@ -117,8 +122,8 @@ Now you can use it in you classes:
 
     login(credentials) {
       this.sails.post("/login", credentials)
-        .then((response) => alert("Success"))
-        .catch((response) => alert("Wrong"));
+        .then((response) => alert("Success login"))
+        .catch((response) => alert("Wrong credentials"));
     }
 
   }
