@@ -35,7 +35,7 @@ export class CSRFInterceptor {
           this.setCsrfTokenHeader(message);
           resolve(message);
         }).catch(reject);
-      })
+      });
     }
 
   }
