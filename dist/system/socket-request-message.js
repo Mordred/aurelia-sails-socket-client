@@ -3,22 +3,22 @@ System.register(['aurelia-path', './headers', './request-message-processor'], fu
 
   _export('createSocketRequestMessageProcessor', createSocketRequestMessageProcessor);
 
-  function buildFullUri(message) {
+  function buildFullUrl(message) {
 
-    var uri, qs;
+    var url, qs;
 
-    if (message.uri && message.uri[0] == '/') {
-      uri = message.uri;
+    if (message.url && message.url[0] == '/') {
+      url = message.url;
     } else {
-      uri = join(message.baseUri, message.uri);
+      url = join(message.baseUrl, message.url);
     }
 
     if (message.params) {
       qs = buildQueryString(message.params);
-      uri = qs ? '' + uri + '?' + qs : uri;
+      url = qs ? '' + url + '?' + qs : url;
     }
 
-    return uri;
+    return url;
   }
 
   function createSocketRequestMessageProcessor() {
@@ -42,11 +42,11 @@ System.register(['aurelia-path', './headers', './request-message-processor'], fu
       _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
       SocketRequestMessage = (function () {
-        function SocketRequestMessage(method, uri, content, headers) {
+        function SocketRequestMessage(method, url, content, headers) {
           _classCallCheck(this, SocketRequestMessage);
 
           this.method = method;
-          this.uri = uri;
+          this.url = url;
           this.content = content;
           this.headers = headers || new Headers();
         }
@@ -56,7 +56,7 @@ System.register(['aurelia-path', './headers', './request-message-processor'], fu
           get: function () {
             return {
               method: this.method,
-              url: buildFullUri(this),
+              url: buildFullUrl(this),
               params: this.content,
               headers: this.headers.headers
             };

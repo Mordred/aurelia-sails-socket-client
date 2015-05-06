@@ -93,14 +93,14 @@ export class SailsSocketClient {
    * Returns a new RequestBuilder for this SailsClient instance that can be used to build and send socket requests.
    *
    * @method createRequest
-   * @param uri The target URI.
+   * @param url The target URL.
    * @type RequestBuilder
    */
-  createRequest(uri) {
+  createRequest(url) {
     let builder = new RequestBuilder(this);
 
-    if (uri) {
-      builder.withUri(uri);
+    if (url) {
+      builder.withUrl(url);
     }
 
     return builder;
@@ -171,80 +171,80 @@ export class SailsSocketClient {
    * Sends an DELETE request.
    *
    * @method delete
-   * @param {String} uri The target URI.
+   * @param {String} url The target URL.
    * @return {Promise} A cancellable promise object.
    */
-  delete(uri){
-    return this.createRequest(uri).asDelete().send();
+  delete(url){
+    return this.createRequest(url).asDelete().send();
   }
 
   /**
    * Sends an GET request.
    *
    * @method get
-   * @param {String} uri The target URI.
+   * @param {String} url The target URL.
    * @return {Promise} A cancellable promise object.
    */
-  get(uri){
-    return this.createRequest(uri).asGet().send();
+  get(url){
+    return this.createRequest(url).asGet().send();
   }
 
   /**
    * Sends an HEAD request.
    *
    * @method head
-   * @param {String} uri The target URI.
+   * @param {String} url The target URL.
    * @return {Promise} A cancellable promise object.
    */
-  head(uri){
-    return this.createRequest(uri).asHead().send();
+  head(url){
+    return this.createRequest(url).asHead().send();
   }
 
   /**
    * Sends an OPTIONS request.
    *
    * @method options
-   * @param {String} uri The target URI.
+   * @param {String} url The target URL.
    * @return {Promise} A cancellable promise object.
    */
-  options(uri){
-    return this.createRequest(uri).asOptions().send();
+  options(url){
+    return this.createRequest(url).asOptions().send();
   }
 
   /**
    * Sends an PUT request.
    *
    * @method put
-   * @param {String} uri The target URI.
-   * @param {Object} uri The request payload.
+   * @param {String} url The target URL.
+   * @param {Object} url The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  put(uri, content){
-    return this.createRequest(uri).asPut().withContent(content).send();
+  put(url, content){
+    return this.createRequest(url).asPut().withContent(content).send();
   }
 
   /**
    * Sends an PATCH request.
    *
    * @method patch
-   * @param {String} uri The target URI.
-   * @param {Object} uri The request payload.
+   * @param {String} url The target URL.
+   * @param {Object} url The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  patch(uri, content){
-    return this.createRequest(uri).asPatch().withContent(content).send();
+  patch(url, content){
+    return this.createRequest(url).asPatch().withContent(content).send();
   }
 
   /**
    * Sends an POST request.
    *
    * @method post
-   * @param {String} uri The target URI.
-   * @param {Object} uri The request payload.
+   * @param {String} url The target URL.
+   * @param {Object} url The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  post(uri, content){
-    return this.createRequest(uri).asPost().withContent(content).send();
+  post(url, content){
+    return this.createRequest(url).asPost().withContent(content).send();
   }
 
 }

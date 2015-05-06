@@ -1,9 +1,9 @@
 System.register(['./sails-socket-client', 'sails.io.js', './interceptors'], function (_export) {
   var SailsSocketClient, io;
 
-  _export('install', install);
+  _export('configure', configure);
 
-  function install(aurelia, configCallback) {
+  function configure(aurelia, configCallback) {
 
     var sails = new SailsSocketClient();
 

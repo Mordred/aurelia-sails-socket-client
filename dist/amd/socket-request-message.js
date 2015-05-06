@@ -5,35 +5,33 @@ define(['exports', 'aurelia-path', './headers', './request-message-processor'], 
 
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
+  exports.__esModule = true;
   exports.createSocketRequestMessageProcessor = createSocketRequestMessageProcessor;
 
-  function buildFullUri(message) {
+  function buildFullUrl(message) {
 
-    var uri, qs;
+    var url, qs;
 
-    if (message.uri && message.uri[0] == '/') {
-      uri = message.uri;
+    if (message.url && message.url[0] == '/') {
+      url = message.url;
     } else {
-      uri = _aureliaPath.join(message.baseUri, message.uri);
+      url = _aureliaPath.join(message.baseUrl, message.url);
     }
 
     if (message.params) {
       qs = _aureliaPath.buildQueryString(message.params);
-      uri = qs ? '' + uri + '?' + qs : uri;
+      url = qs ? '' + url + '?' + qs : url;
     }
 
-    return uri;
+    return url;
   }
 
   var SocketRequestMessage = (function () {
-    function SocketRequestMessage(method, uri, content, headers) {
+    function SocketRequestMessage(method, url, content, headers) {
       _classCallCheck(this, SocketRequestMessage);
 
       this.method = method;
-      this.uri = uri;
+      this.url = url;
       this.content = content;
       this.headers = headers || new _headers.Headers();
     }
@@ -43,7 +41,7 @@ define(['exports', 'aurelia-path', './headers', './request-message-processor'], 
       get: function () {
         return {
           method: this.method,
-          url: buildFullUri(this),
+          url: buildFullUrl(this),
           params: this.content,
           headers: this.headers.headers
         };

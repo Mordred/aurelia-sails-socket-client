@@ -64,9 +64,9 @@ RequestBuilder.addHelper('asPut', function(){
   };
 });
 
-RequestBuilder.addHelper('withUri', function(uri){
+RequestBuilder.addHelper('withUrl', function(url){
   return function(client, processor, message){
-    message.uri = uri;
+    message.url = url;
   };
 });
 
@@ -76,9 +76,9 @@ RequestBuilder.addHelper('withContent', function(content){
   };
 });
 
-RequestBuilder.addHelper('withBaseUri', function(baseUri){
+RequestBuilder.addHelper('withBaseUrl', function(baseUrl){
   return function(client, processor, message){
-    message.baseUri = baseUri;
+    message.baseUrl = baseUrl;
   };
 });
 

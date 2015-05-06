@@ -1,5 +1,5 @@
 System.register(['aurelia-path', './socket-request-message'], function (_export) {
-  var join, SocketRequestMessage, _classCallCheck, _createClass, RequestBuilder;
+  var join, SocketRequestMessage, _classCallCheck, RequestBuilder;
 
   return {
     setters: [function (_aureliaPath) {
@@ -12,8 +12,6 @@ System.register(['aurelia-path', './socket-request-message'], function (_export)
 
       _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
 
-      _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
       RequestBuilder = (function () {
         function RequestBuilder(client) {
           _classCallCheck(this, RequestBuilder);
@@ -22,21 +20,17 @@ System.register(['aurelia-path', './socket-request-message'], function (_export)
           this.transformers = client.requestTransformers.slice(0);
         }
 
-        _createClass(RequestBuilder, [{
-          key: 'send',
-          value: function send() {
-            var message = new SocketRequestMessage();
-            return this.client.send(message, this.transformers);
-          }
-        }], [{
-          key: 'addHelper',
-          value: function addHelper(name, fn) {
-            RequestBuilder.prototype[name] = function () {
-              this.transformers.push(fn.apply(this, arguments));
-              return this;
-            };
-          }
-        }]);
+        RequestBuilder.addHelper = function addHelper(name, fn) {
+          RequestBuilder.prototype[name] = function () {
+            this.transformers.push(fn.apply(this, arguments));
+            return this;
+          };
+        };
+
+        RequestBuilder.prototype.send = function send() {
+          var message = new SocketRequestMessage();
+          return this.client.send(message, this.transformers);
+        };
 
         return RequestBuilder;
       })();
@@ -85,9 +79,9 @@ System.register(['aurelia-path', './socket-request-message'], function (_export)
         };
       });
 
-      RequestBuilder.addHelper('withUri', function (uri) {
+      RequestBuilder.addHelper('withUrl', function (url) {
         return function (client, processor, message) {
-          message.uri = uri;
+          message.url = url;
         };
       });
 
@@ -97,9 +91,9 @@ System.register(['aurelia-path', './socket-request-message'], function (_export)
         };
       });
 
-      RequestBuilder.addHelper('withBaseUri', function (baseUri) {
+      RequestBuilder.addHelper('withBaseUrl', function (baseUrl) {
         return function (client, processor, message) {
-          message.baseUri = baseUri;
+          message.baseUrl = baseUrl;
         };
       });
 

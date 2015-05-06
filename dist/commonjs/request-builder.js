@@ -2,11 +2,7 @@
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+exports.__esModule = true;
 
 var _join = require('aurelia-path');
 
@@ -20,21 +16,17 @@ var RequestBuilder = (function () {
     this.transformers = client.requestTransformers.slice(0);
   }
 
-  _createClass(RequestBuilder, [{
-    key: 'send',
-    value: function send() {
-      var message = new _SocketRequestMessage.SocketRequestMessage();
-      return this.client.send(message, this.transformers);
-    }
-  }], [{
-    key: 'addHelper',
-    value: function addHelper(name, fn) {
-      RequestBuilder.prototype[name] = function () {
-        this.transformers.push(fn.apply(this, arguments));
-        return this;
-      };
-    }
-  }]);
+  RequestBuilder.addHelper = function addHelper(name, fn) {
+    RequestBuilder.prototype[name] = function () {
+      this.transformers.push(fn.apply(this, arguments));
+      return this;
+    };
+  };
+
+  RequestBuilder.prototype.send = function send() {
+    var message = new _SocketRequestMessage.SocketRequestMessage();
+    return this.client.send(message, this.transformers);
+  };
 
   return RequestBuilder;
 })();
@@ -83,9 +75,9 @@ RequestBuilder.addHelper('asPut', function () {
   };
 });
 
-RequestBuilder.addHelper('withUri', function (uri) {
+RequestBuilder.addHelper('withUrl', function (url) {
   return function (client, processor, message) {
-    message.uri = uri;
+    message.url = url;
   };
 });
 
@@ -95,9 +87,9 @@ RequestBuilder.addHelper('withContent', function (content) {
   };
 });
 
-RequestBuilder.addHelper('withBaseUri', function (baseUri) {
+RequestBuilder.addHelper('withBaseUrl', function (baseUrl) {
   return function (client, processor, message) {
-    message.baseUri = baseUri;
+    message.baseUrl = baseUrl;
   };
 });
 

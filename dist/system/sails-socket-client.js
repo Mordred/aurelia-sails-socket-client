@@ -1,5 +1,5 @@
 System.register(['core-js', './headers', './request-builder', './socket-request-message'], function (_export) {
-  var core, Headers, RequestBuilder, SocketRequestMessage, createSocketRequestMessageProcessor, _classCallCheck, _createClass, SailsSocketClient;
+  var core, Headers, RequestBuilder, SocketRequestMessage, createSocketRequestMessageProcessor, _classCallCheck, SailsSocketClient;
 
   function trackRequestStart(client, processor) {
     client.pendingRequests.push(processor);
@@ -36,8 +36,6 @@ System.register(['core-js', './headers', './request-builder', './socket-request-
 
       _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
 
-      _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
       SailsSocketClient = (function () {
         function SailsSocketClient(socket) {
           _classCallCheck(this, SailsSocketClient);
@@ -52,153 +50,132 @@ System.register(['core-js', './headers', './request-builder', './socket-request-
           this.isRequesting = false;
         }
 
-        _createClass(SailsSocketClient, [{
-          key: 'setSocket',
-          value: function setSocket(socket) {
-            this.socket = socket;
-            return this;
+        SailsSocketClient.prototype.setSocket = function setSocket(socket) {
+          this.socket = socket;
+          return this;
+        };
+
+        SailsSocketClient.prototype.addInterceptor = function addInterceptor(interceptor) {
+          this.interceptors.unshift(interceptor);
+          return this;
+        };
+
+        SailsSocketClient.prototype.configure = function configure(fn) {
+          var builder = new RequestBuilder(this);
+          fn(builder);
+          this.requestTransformers = builder.transformers;
+          return this;
+        };
+
+        SailsSocketClient.prototype.createRequest = function createRequest(url) {
+          var builder = new RequestBuilder(this);
+
+          if (url) {
+            builder.withUrl(url);
           }
-        }, {
-          key: 'addInterceptor',
-          value: function addInterceptor(interceptor) {
-            this.interceptors.unshift(interceptor);
-            return this;
+
+          return builder;
+        };
+
+        SailsSocketClient.prototype.send = function send(message, transformers) {
+          var _this = this;
+
+          var processor,
+              promise,
+              i,
+              ii,
+              transformPromises = [];
+
+          processor = createSocketRequestMessageProcessor();
+          trackRequestStart(this, processor);
+
+          transformers = transformers || this.requestTransformers;
+
+          for (i = 0, ii = transformers.length; i < ii; ++i) {
+            transformPromises.push(transformers[i](this, processor, message));
           }
-        }, {
-          key: 'configure',
-          value: function configure(fn) {
-            var builder = new RequestBuilder(this);
-            fn(builder);
-            this.requestTransformers = builder.transformers;
-            return this;
-          }
-        }, {
-          key: 'createRequest',
-          value: function createRequest(uri) {
-            var builder = new RequestBuilder(this);
 
-            if (uri) {
-              builder.withUri(uri);
-            }
-
-            return builder;
-          }
-        }, {
-          key: 'send',
-          value: function send(message, transformers) {
-            var _this = this;
-
-            var processor,
-                promise,
-                i,
-                ii,
-                transformPromises = [];
-
-            processor = createSocketRequestMessageProcessor();
-            trackRequestStart(this, processor);
-
-            transformers = transformers || this.requestTransformers;
-
-            for (i = 0, ii = transformers.length; i < ii; ++i) {
-              transformPromises.push(transformers[i](this, processor, message));
-            }
-
-            var processRequest = function processRequest(message) {
-              return processor.process(_this, message).then(function (response) {
-                trackRequestEnd(_this, processor);
-                return response;
-              })['catch'](function (response) {
-                trackRequestEnd(_this, processor);
-                throw response;
-              });
-            };
-
-            var chain = [processRequest, undefined];
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-              for (var _iterator = this.interceptors[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var interceptor = _step.value;
-
-                if (interceptor.request || interceptor.requestError) {
-                  chain.unshift(interceptor.requestError ? interceptor.requestError.bind(interceptor) : undefined);
-                  chain.unshift(interceptor.request ? interceptor.request.bind(interceptor) : undefined);
-                }
-
-                if (interceptor.response || interceptor.responseError) {
-                  chain.push(interceptor.response ? interceptor.response.bind(interceptor) : undefined);
-                  chain.push(interceptor.responseError ? interceptor.responseError.bind(interceptor) : undefined);
-                }
-              }
-            } catch (err) {
-              _didIteratorError = true;
-              _iteratorError = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion && _iterator['return']) {
-                  _iterator['return']();
-                }
-              } finally {
-                if (_didIteratorError) {
-                  throw _iteratorError;
-                }
-              }
-            }
-
-            promise = Promise.all(transformPromises).then(function () {
-              return message;
+          var processRequest = function processRequest(message) {
+            return processor.process(_this, message).then(function (response) {
+              trackRequestEnd(_this, processor);
+              return response;
+            })['catch'](function (response) {
+              trackRequestEnd(_this, processor);
+              throw response;
             });
+          };
 
-            while (chain.length) {
-              var thenFn = chain.shift();
-              var rejectFn = chain.shift();
-              promise = promise.then(thenFn, rejectFn);
+          var chain = [processRequest, undefined];
+
+          for (var _iterator = this.interceptors, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            var _ref;
+
+            if (_isArray) {
+              if (_i >= _iterator.length) break;
+              _ref = _iterator[_i++];
+            } else {
+              _i = _iterator.next();
+              if (_i.done) break;
+              _ref = _i.value;
             }
 
-            promise.abort = promise.cancel = function () {
-              processor.abort();
-            };
+            var interceptor = _ref;
 
-            return promise;
+            if (interceptor.request || interceptor.requestError) {
+              chain.unshift(interceptor.requestError ? interceptor.requestError.bind(interceptor) : undefined);
+              chain.unshift(interceptor.request ? interceptor.request.bind(interceptor) : undefined);
+            }
+
+            if (interceptor.response || interceptor.responseError) {
+              chain.push(interceptor.response ? interceptor.response.bind(interceptor) : undefined);
+              chain.push(interceptor.responseError ? interceptor.responseError.bind(interceptor) : undefined);
+            }
           }
-        }, {
-          key: 'delete',
-          value: function _delete(uri) {
-            return this.createRequest(uri).asDelete().send();
+
+          promise = Promise.all(transformPromises).then(function () {
+            return message;
+          });
+
+          while (chain.length) {
+            var thenFn = chain.shift();
+            var rejectFn = chain.shift();
+            promise = promise.then(thenFn, rejectFn);
           }
-        }, {
-          key: 'get',
-          value: function get(uri) {
-            return this.createRequest(uri).asGet().send();
-          }
-        }, {
-          key: 'head',
-          value: function head(uri) {
-            return this.createRequest(uri).asHead().send();
-          }
-        }, {
-          key: 'options',
-          value: function options(uri) {
-            return this.createRequest(uri).asOptions().send();
-          }
-        }, {
-          key: 'put',
-          value: function put(uri, content) {
-            return this.createRequest(uri).asPut().withContent(content).send();
-          }
-        }, {
-          key: 'patch',
-          value: function patch(uri, content) {
-            return this.createRequest(uri).asPatch().withContent(content).send();
-          }
-        }, {
-          key: 'post',
-          value: function post(uri, content) {
-            return this.createRequest(uri).asPost().withContent(content).send();
-          }
-        }]);
+
+          promise.abort = promise.cancel = function () {
+            processor.abort();
+          };
+
+          return promise;
+        };
+
+        SailsSocketClient.prototype['delete'] = function _delete(url) {
+          return this.createRequest(url).asDelete().send();
+        };
+
+        SailsSocketClient.prototype.get = function get(url) {
+          return this.createRequest(url).asGet().send();
+        };
+
+        SailsSocketClient.prototype.head = function head(url) {
+          return this.createRequest(url).asHead().send();
+        };
+
+        SailsSocketClient.prototype.options = function options(url) {
+          return this.createRequest(url).asOptions().send();
+        };
+
+        SailsSocketClient.prototype.put = function put(url, content) {
+          return this.createRequest(url).asPut().withContent(content).send();
+        };
+
+        SailsSocketClient.prototype.patch = function patch(url, content) {
+          return this.createRequest(url).asPatch().withContent(content).send();
+        };
+
+        SailsSocketClient.prototype.post = function post(url, content) {
+          return this.createRequest(url).asPost().withContent(content).send();
+        };
 
         return SailsSocketClient;
       })();

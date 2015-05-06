@@ -4,21 +4,14 @@ var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? ob
 
 var _defaults = function (obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; };
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-exports.install = install;
+exports.__esModule = true;
+exports.configure = configure;
 
 var _SailsSocketClient = require('./sails-socket-client');
 
 require('sails.io.js');
 
-Object.defineProperty(exports, 'SailsSocketClient', {
-  enumerable: true,
-  get: function get() {
-    return _SailsSocketClient.SailsSocketClient;
-  }
-});
+exports.SailsSocketClient = _SailsSocketClient.SailsSocketClient;
 
 var _interceptors = require('./interceptors');
 
@@ -27,7 +20,7 @@ _defaults(exports, _interopRequireWildcard(_interceptors));
 var io = window.io;
 io.sails.autoConnect = false;
 
-function install(aurelia, configCallback) {
+function configure(aurelia, configCallback) {
 
   var sails = new _SailsSocketClient.SailsSocketClient();
 

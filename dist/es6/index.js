@@ -9,7 +9,7 @@ import 'sails.io.js';
 let io = window.io;
 io.sails.autoConnect = false;
 
-export function install(aurelia, configCallback) {
+export function configure(aurelia, configCallback) {
 
   let sails = new SailsSocketClient();
 

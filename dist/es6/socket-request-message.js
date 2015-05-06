@@ -3,29 +3,29 @@ import { join, buildQueryString } from 'aurelia-path';
 import { Headers } from './headers';
 import { RequestMessageProcessor } from './request-message-processor';
 
-function buildFullUri(message) {
+function buildFullUrl(message) {
 
-  var uri, qs;
-  // Message URI starts with / - as absolute URL
-  if (message.uri && message.uri[0] == '/') {
-    uri = message.uri;
+  var url, qs;
+  // Message URL starts with / - as absolute URL
+  if (message.url && message.url[0] == '/') {
+    url = message.url;
   } else {
-    uri = join(message.baseUri, message.uri);
+    url = join(message.baseUrl, message.url);
   }
 
   if (message.params) {
     qs = buildQueryString(message.params);
-    uri = qs ? `${uri}?${qs}` : uri;
+    url = qs ? `${url}?${qs}` : url;
   }
 
-  return uri;
+  return url;
 }
 
 export class SocketRequestMessage {
 
-  constructor(method, uri, content, headers) {
+  constructor(method, url, content, headers) {
     this.method = method;
-    this.uri = uri;
+    this.url = url;
     this.content = content;
     this.headers = headers || new Headers();
   }
@@ -33,7 +33,7 @@ export class SocketRequestMessage {
   get options() {
     return {
       method: this.method,
-      url: buildFullUri(this),
+      url: buildFullUrl(this),
       params: this.content,
       headers: this.headers.headers
     };
