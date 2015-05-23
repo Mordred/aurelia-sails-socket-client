@@ -1,0 +1,66 @@
+{
+  "name": "example",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Aurelia + Sails Todo MVC example",
+  "keywords": [],
+  "dependencies": {
+    "ejs": "~0.8.4",
+    "grunt": "0.4.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-coffee": "~0.10.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-jst": "~0.6.0",
+    "grunt-contrib-less": "0.11.1",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-sails-linker": "~0.9.5",
+    "grunt-sync": "~0.0.4",
+    "include-all": "~0.1.3",
+    "jspm": "^0.15.6",
+    "rc": "~0.5.0",
+    "sails": "~0.11.0",
+    "sails-disk": "~0.10.0"
+  },
+  "scripts": {
+    "debug": "node debug app.js",
+    "start": "node app.js"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Mordred/aurelia-sails-socket-client.git"
+  },
+  "author": "Martin Jantosovic <jantosovic.martin@gmail.com>",
+  "license": "",
+  "jspm": {
+    "directories": {
+      "baseURL": "assets"
+    },
+    "dependencies": {
+      "aurelia-animator-css": "github:aurelia/animator-css@^0.2.0",
+      "aurelia-bootstrapper": "github:aurelia/bootstrapper@^0.12.0",
+      "aurelia-dependency-injection": "github:aurelia/dependency-injection@^0.7.0",
+      "aurelia-framework": "github:aurelia/framework@^0.11.0",
+      "aurelia-http-client": "github:aurelia/http-client@^0.8.0",
+      "aurelia-router": "github:aurelia/router@^0.8.0",
+      "aurelia-sails-socket-client": "github:Mordred/aurelia-sails-socket-client@^0.3.0",
+      "css": "github:systemjs/plugin-css@^0.1.9",
+      "todomvc-app-css": "github:tastejs/todomvc-app-css@^2.0.1",
+      "todomvc-common": "github:tastejs/todomvc-common@^1.0.2"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.1.13",
+      "babel-runtime": "npm:babel-runtime@^5.1.13",
+      "core-js": "npm:core-js@^0.9.4"
+    },
+    "overrides": {
+      "github:balderdashy/sails.io.js@0.11.5": {
+        "main": "dist/sails.io.js",
+        "format": "global"
+      }
+    }
+  }
+}
