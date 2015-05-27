@@ -111,7 +111,7 @@ Now you can use it in you classes:
 
   ```js
   import { inject } from 'aurelia-framework';
-  import SailsSocketClient from 'aurelia-sails-socket-client';
+  import { SailsSocketClient } from 'aurelia-sails-socket-client';
 
   @inject(SailsSocketClient)
   export class Login {
