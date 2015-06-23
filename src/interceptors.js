@@ -1,4 +1,5 @@
 import core from 'core-js';
+import { LogManager } from 'aurelia-framework';
 
 export class CSRFInterceptor {
 
@@ -43,6 +44,27 @@ export class CSRFInterceptor {
   setCsrfTokenHeader(message) {
     message.headers.add('X-Csrf-Token', this.token);
     return message;
+  }
+
+}
+
+var logger = LogManager.getLogger('sails');
+
+export class LoggerInterceptor {
+
+  request(message) {
+    logger.debug('Sending message to sails', message);
+    return message;
+  }
+
+  response(response) {
+    logger.debug('Receiving response from sails', response);
+    return response;
+  }
+
+  responseError(response) {
+    logger.error('There was an error during sails request', response);
+    throw response;
   }
 
 }
