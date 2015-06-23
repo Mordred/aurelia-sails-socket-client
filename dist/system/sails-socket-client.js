@@ -91,11 +91,11 @@ System.register(['core-js', './headers', './request-builder', './socket-request-
 
           transformers = transformers || this.requestTransformers;
 
-          for (i = 0, ii = transformers.length; i < ii; ++i) {
-            transformPromises.push(transformers[i](this, processor, message));
-          }
+          promise = Promise.resolve(message).then(function (message) {
+            for (i = 0, ii = transformers.length; i < ii; ++i) {
+              transformPromises.push(transformers[i](_this, processor, message));
+            }
 
-          var processRequest = function processRequest(message) {
             return processor.process(_this, message).then(function (response) {
               trackRequestEnd(_this, processor);
               return response;
@@ -103,44 +103,7 @@ System.register(['core-js', './headers', './request-builder', './socket-request-
               trackRequestEnd(_this, processor);
               throw response;
             });
-          };
-
-          var chain = [processRequest, undefined];
-
-          for (var _iterator = this.interceptors, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-            var _ref;
-
-            if (_isArray) {
-              if (_i >= _iterator.length) break;
-              _ref = _iterator[_i++];
-            } else {
-              _i = _iterator.next();
-              if (_i.done) break;
-              _ref = _i.value;
-            }
-
-            var interceptor = _ref;
-
-            if (interceptor.request || interceptor.requestError) {
-              chain.unshift(interceptor.requestError ? interceptor.requestError.bind(interceptor) : undefined);
-              chain.unshift(interceptor.request ? interceptor.request.bind(interceptor) : undefined);
-            }
-
-            if (interceptor.response || interceptor.responseError) {
-              chain.push(interceptor.response ? interceptor.response.bind(interceptor) : undefined);
-              chain.push(interceptor.responseError ? interceptor.responseError.bind(interceptor) : undefined);
-            }
-          }
-
-          promise = Promise.all(transformPromises).then(function () {
-            return message;
           });
-
-          while (chain.length) {
-            var thenFn = chain.shift();
-            var rejectFn = chain.shift();
-            promise = promise.then(thenFn, rejectFn);
-          }
 
           promise.abort = promise.cancel = function () {
             processor.abort();
@@ -149,20 +112,20 @@ System.register(['core-js', './headers', './request-builder', './socket-request-
           return promise;
         };
 
-        SailsSocketClient.prototype['delete'] = function _delete(url) {
-          return this.createRequest(url).asDelete().send();
+        SailsSocketClient.prototype['delete'] = function _delete(url, params) {
+          return this.createRequest(url).asDelete().withParams(params).send();
         };
 
-        SailsSocketClient.prototype.get = function get(url) {
-          return this.createRequest(url).asGet().send();
+        SailsSocketClient.prototype.get = function get(url, params) {
+          return this.createRequest(url).asGet().withParams(params).send();
         };
 
-        SailsSocketClient.prototype.head = function head(url) {
-          return this.createRequest(url).asHead().send();
+        SailsSocketClient.prototype.head = function head(url, params) {
+          return this.createRequest(url).asHead().withParams(params).send();
         };
 
-        SailsSocketClient.prototype.options = function options(url) {
-          return this.createRequest(url).asOptions().send();
+        SailsSocketClient.prototype.options = function options(url, params) {
+          return this.createRequest(url).asOptions().withParams(params).send();
         };
 
         SailsSocketClient.prototype.put = function put(url, content) {

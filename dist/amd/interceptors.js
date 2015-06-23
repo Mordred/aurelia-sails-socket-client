@@ -1,4 +1,4 @@
-define(['exports', 'core-js'], function (exports, _coreJs) {
+define(['exports', 'core-js', 'aurelia-framework'], function (exports, _coreJs, _aureliaFramework) {
   'use strict';
 
   var _interopRequire = function (obj) { return obj && obj.__esModule ? obj['default'] : obj; };
@@ -48,4 +48,41 @@ define(['exports', 'core-js'], function (exports, _coreJs) {
   })();
 
   exports.CSRFInterceptor = CSRFInterceptor;
+
+  var logger = _aureliaFramework.LogManager.getLogger('sails');
+
+  var LoggerInterceptor = (function () {
+    function LoggerInterceptor() {
+      _classCallCheck(this, LoggerInterceptor);
+    }
+
+    LoggerInterceptor.prototype.request = function request(message) {
+      logger.debug('Sending message to sails', message);
+      return message;
+    };
+
+    LoggerInterceptor.prototype.response = (function (_response) {
+      function response(_x) {
+        return _response.apply(this, arguments);
+      }
+
+      response.toString = function () {
+        return _response.toString();
+      };
+
+      return response;
+    })(function (response) {
+      logger.debug('Receiving response from sails', response);
+      return response;
+    });
+
+    LoggerInterceptor.prototype.responseError = function responseError(response) {
+      logger.error('There was an error during sails request', response);
+      throw response;
+    };
+
+    return LoggerInterceptor;
+  })();
+
+  exports.LoggerInterceptor = LoggerInterceptor;
 });

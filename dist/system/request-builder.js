@@ -114,6 +114,13 @@ System.register(['aurelia-path', './socket-request-message'], function (_export)
           message.withCredentials = value;
         };
       });
+
+      RequestBuilder.addHelper('withInterceptor', function (interceptor) {
+        return function (client, processor, message) {
+          message.interceptors = message.interceptors || [];
+          message.interceptors.unshift(interceptor);
+        };
+      });
     }
   };
 });

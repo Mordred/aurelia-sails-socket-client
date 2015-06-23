@@ -1,3 +1,19 @@
+### 0.4.0 (2015-06-23)
+
+
+#### Features
+
+* **LoggerInterceptor:** added LoggerInterceptor for debuging messages ([8196903b](http://github.com/Mordred/aurelia-sails-socket-client/commit/8196903b565a7124902611a5eb8e57dada378b94))
+
+#### Breaking Changes
+
+* This is breaking API change to interceptor configuration.
+To update, replace uses of `addInterceptor` with `withInterceptor` called inside
+`configure`. See [example](https://github.com/Mordred/aurelia-sails-socket-client/commit/7a3bd4ea864e12e9969ff600c537e315ace98bb7#diff-089cffdd38b1054e1d0332359219fbed)
+
+ ([b55aa5f7](http://github.com/Mordred/aurelia-sails-socket-client/commit/b55aa5f79779c76cf8d410dda6f9dd69295d0c5f))
+
+
 ### 0.3.0 (2015-05-06)
 
 #### Breaking Changes

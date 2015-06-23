@@ -110,3 +110,10 @@ RequestBuilder.addHelper('withCredentials', function (value) {
     message.withCredentials = value;
   };
 });
+
+RequestBuilder.addHelper('withInterceptor', function (interceptor) {
+  return function (client, processor, message) {
+    message.interceptors = message.interceptors || [];
+    message.interceptors.unshift(interceptor);
+  };
+});

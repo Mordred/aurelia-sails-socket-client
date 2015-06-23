@@ -1,9 +1,11 @@
-System.register(['core-js'], function (_export) {
-  var core, _classCallCheck, CSRFInterceptor;
+System.register(['core-js', 'aurelia-framework'], function (_export) {
+  var core, LogManager, _classCallCheck, CSRFInterceptor, logger, LoggerInterceptor;
 
   return {
     setters: [function (_coreJs) {
       core = _coreJs['default'];
+    }, function (_aureliaFramework) {
+      LogManager = _aureliaFramework.LogManager;
     }],
     execute: function () {
       'use strict';
@@ -49,6 +51,43 @@ System.register(['core-js'], function (_export) {
       })();
 
       _export('CSRFInterceptor', CSRFInterceptor);
+
+      logger = LogManager.getLogger('sails');
+
+      LoggerInterceptor = (function () {
+        function LoggerInterceptor() {
+          _classCallCheck(this, LoggerInterceptor);
+        }
+
+        LoggerInterceptor.prototype.request = function request(message) {
+          logger.debug('Sending message to sails', message);
+          return message;
+        };
+
+        LoggerInterceptor.prototype.response = (function (_response) {
+          function response(_x) {
+            return _response.apply(this, arguments);
+          }
+
+          response.toString = function () {
+            return _response.toString();
+          };
+
+          return response;
+        })(function (response) {
+          logger.debug('Receiving response from sails', response);
+          return response;
+        });
+
+        LoggerInterceptor.prototype.responseError = function responseError(response) {
+          logger.error('There was an error during sails request', response);
+          throw response;
+        };
+
+        return LoggerInterceptor;
+      })();
+
+      _export('LoggerInterceptor', LoggerInterceptor);
     }
   };
 });

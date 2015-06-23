@@ -122,43 +122,22 @@ export class SailsSocketClient {
 
     transformers = transformers || this.requestTransformers;
 
-    for(i = 0, ii = transformers.length; i < ii; ++i){
-      transformPromises.push(transformers[i](this, processor, message));
-    }
+    promise = Promise.resolve(message)
+      .then((message) => {
+        // First apply transformers passed to the client.send()
+        for(i = 0, ii = transformers.length; i < ii; ++i){
+          transformPromises.push(transformers[i](this, processor, message));
+        }
 
-    var processRequest = (message) => {
-      return processor.process(this, message).then(response => {
-        trackRequestEnd(this, processor);
-        return response;
-      }).catch(response => {
-        trackRequestEnd(this, processor);
-        throw response;
+        return processor.process(this, message).then(response => {
+          trackRequestEnd(this, processor);
+          return response;
+        }).catch(response => {
+          trackRequestEnd(this, processor);
+          throw response;
+        });
+
       });
-    };
-
-    var chain = [ processRequest, undefined ];
-    // Apply interceptors
-    for (let interceptor of this.interceptors) {
-      if (interceptor.request || interceptor.requestError) {
-        chain.unshift(interceptor.requestError ? interceptor.requestError.bind(interceptor) : undefined);
-        chain.unshift(interceptor.request ? interceptor.request.bind(interceptor) : undefined);
-      }
-
-      if (interceptor.response || interceptor.responseError) {
-        chain.push(interceptor.response ? interceptor.response.bind(interceptor) : undefined);
-        chain.push(interceptor.responseError ? interceptor.responseError.bind(interceptor) : undefined);
-      }
-    }
-
-    promise = Promise.all(transformPromises).then(function() {
-      return message;
-    });
-
-    while(chain.length) {
-      let thenFn = chain.shift();
-      let rejectFn = chain.shift();
-      promise = promise.then(thenFn, rejectFn);
-    }
 
     promise.abort = promise.cancel = function() {
       processor.abort();
@@ -172,10 +151,11 @@ export class SailsSocketClient {
    *
    * @method delete
    * @param {String} url The target URL.
+   * @param {object|undefined} params Params for the URL.
    * @return {Promise} A cancellable promise object.
    */
-  delete(url){
-    return this.createRequest(url).asDelete().send();
+  delete(url, params){
+    return this.createRequest(url).asDelete().withParams(params).send();
   }
 
   /**
@@ -183,10 +163,11 @@ export class SailsSocketClient {
    *
    * @method get
    * @param {String} url The target URL.
+   * @param {object|undefined} params Params for the URL.
    * @return {Promise} A cancellable promise object.
    */
-  get(url){
-    return this.createRequest(url).asGet().send();
+  get(url, params){
+    return this.createRequest(url).asGet().withParams(params).send();
   }
 
   /**
@@ -194,10 +175,11 @@ export class SailsSocketClient {
    *
    * @method head
    * @param {String} url The target URL.
+   * @param {object|undefined} params Params for the URL.
    * @return {Promise} A cancellable promise object.
    */
-  head(url){
-    return this.createRequest(url).asHead().send();
+  head(url, params){
+    return this.createRequest(url).asHead().withParams(params).send();
   }
 
   /**
@@ -205,10 +187,11 @@ export class SailsSocketClient {
    *
    * @method options
    * @param {String} url The target URL.
+   * @param {object|undefined} params Params for the URL.
    * @return {Promise} A cancellable promise object.
    */
-  options(url){
-    return this.createRequest(url).asOptions().send();
+  options(url, params){
+    return this.createRequest(url).asOptions().withParams(params).send();
   }
 
   /**

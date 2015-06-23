@@ -10,6 +10,8 @@ var _core = require('core-js');
 
 var _core2 = _interopRequireWildcard(_core);
 
+var _LogManager = require('aurelia-framework');
+
 var CSRFInterceptor = (function () {
   function CSRFInterceptor(url, client, token) {
     _classCallCheck(this, CSRFInterceptor);
@@ -49,3 +51,40 @@ var CSRFInterceptor = (function () {
 })();
 
 exports.CSRFInterceptor = CSRFInterceptor;
+
+var logger = _LogManager.LogManager.getLogger('sails');
+
+var LoggerInterceptor = (function () {
+  function LoggerInterceptor() {
+    _classCallCheck(this, LoggerInterceptor);
+  }
+
+  LoggerInterceptor.prototype.request = function request(message) {
+    logger.debug('Sending message to sails', message);
+    return message;
+  };
+
+  LoggerInterceptor.prototype.response = (function (_response) {
+    function response(_x) {
+      return _response.apply(this, arguments);
+    }
+
+    response.toString = function () {
+      return _response.toString();
+    };
+
+    return response;
+  })(function (response) {
+    logger.debug('Receiving response from sails', response);
+    return response;
+  });
+
+  LoggerInterceptor.prototype.responseError = function responseError(response) {
+    logger.error('There was an error during sails request', response);
+    throw response;
+  };
+
+  return LoggerInterceptor;
+})();
+
+exports.LoggerInterceptor = LoggerInterceptor;

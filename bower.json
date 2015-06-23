@@ -1,6 +1,6 @@
 {
   "name": "aurelia-sails-socket-client",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A simple, restful, message-based wrapper around sails.io client.",
   "keywords": [
     "aurelia",
@@ -18,7 +18,7 @@
     "url": "http://github.com/Mordred/aurelia-sails-socket-client"
   },
   "dependencies": {
-    "aurelia-path": "^0.6.1",
+    "aurelia-path": "^0.7.0",
     "core-js": "zloirock/core-js",
     "sails.io.js": "^0.11.5"
   }
