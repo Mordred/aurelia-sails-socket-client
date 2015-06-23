@@ -26,7 +26,7 @@
       "lib": "dist/system"
     },
     "dependencies": {
-      "aurelia-path": "github:aurelia/path@^0.6.1",
+      "aurelia-path": "github:aurelia/path@^0.7.0",
       "core-js": "github:zloirock/core-js@^0.9.6",
       "sails.io.js": "github:balderdashy/sails.io.js@^0.11.5"
     },

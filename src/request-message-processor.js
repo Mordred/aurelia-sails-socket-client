@@ -23,17 +23,51 @@ export class RequestMessageProcessor {
         promises.push(transformers[i](client, this, message));
       }
 
-      Promise.all(promises).then(function() {
-        return client.socket.request(message.options, function(data, jwr) {
-          let response = new SocketResponseMessage(message, data, jwr);
-          if (response.isSuccess) {
-            resolve(response);
-          } else {
-            reject(response);
+      return Promise.all(promises).then(() => resolve(message)).catch(reject);
+    }).then((message) => {
+
+        var processRequest = (message) => {
+          return new Promise((resolve, reject) => {
+            client.socket.request(message.options, function(data, jwr) {
+              let response = new SocketResponseMessage(message, data, jwr);
+              if (response.isSuccess) {
+                resolve(response);
+              } else {
+                reject(response);
+              }
+            });
+          });
+        };
+
+        // [ onFullfilled, onReject ] pairs
+        var chain = [[processRequest, undefined]];
+        // Apply interceptors chain from the message.interceptors
+        var interceptors = message.interceptors || [];
+        interceptors.forEach(function (interceptor) {
+          if (interceptor.request || interceptor.requestError) {
+            chain.unshift([
+              interceptor.request ? interceptor.request.bind(interceptor) : undefined,
+              interceptor.requestError ? interceptor.requestError.bind(interceptor) : undefined
+            ]);
+          }
+
+          if (interceptor.response || interceptor.responseError) {
+            chain.push([
+              interceptor.response ? interceptor.response.bind(interceptor) : undefined,
+              interceptor.responseError ? interceptor.responseError.bind(interceptor) : undefined
+            ]);
           }
         });
-      });
+
+        var interceptorsPromise = Promise.resolve(message);
+
+        while (chain.length) {
+          interceptorsPromise = interceptorsPromise.then(...chain.shift());
+        }
+
+        return interceptorsPromise;
     });
+
   }
 
 }
