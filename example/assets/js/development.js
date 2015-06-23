@@ -1,7 +1,5 @@
 import { bootstrap } from 'aurelia-bootstrapper';
-import { CSRFInterceptor, SailsSocketClient } from 'aurelia-sails-socket-client';
-
-import LoggerInterceptor from './interceptors/logger-interceptor';
+import { CSRFInterceptor, LoggerInterceptor, SailsSocketClient } from 'aurelia-sails-socket-client';
 
 bootstrap(aurelia => {
   aurelia.use
@@ -11,11 +9,12 @@ bootstrap(aurelia => {
     .plugin('aurelia-sails-socket-client', (sails) => {
       sails.configure(x => {
         x.withBaseUrl('/api/v1');
+
+        // Add CSRF token interceptor
+        x.withInterceptor(new CSRFInterceptor('/csrfToken', sails));
+        x.withInterceptor(new LoggerInterceptor());
       });
 
-      // Add CSRF token interceptor
-      sails.addInterceptor(new CSRFInterceptor('/csrfToken', sails));
-      sails.addInterceptor(new LoggerInterceptor());
     });
 
   aurelia.start().then(a => a.setRoot("js/app", document.body))
