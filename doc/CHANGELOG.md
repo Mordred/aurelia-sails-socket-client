@@ -1,3 +1,11 @@
+### 0.5.0 (2015-08-10)
+
+
+#### Features
+
+* **deps:** update dependencies ([98675a94](http://github.com/Mordred/aurelia-sails-socket-client/commit/98675a94e90145a6b0f32cee64d079c22d3606b5))
+
+
 ### 0.4.0 (2015-06-23)
 
 
