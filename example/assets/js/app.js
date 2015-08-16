@@ -21,9 +21,14 @@ export class App {
 
   activate() {
     this.sails.get('todos').then((response) => {
-      this.todos = response.body;
-      window.todos = this.todos;
+      this.todos = response.body.map((t) => new Todo(t));
+
+      this.subscribe();
     });
+  }
+
+  deactivate() {
+    this.unsubscribe();
   }
 
   get hasCompleted() {
@@ -102,6 +107,39 @@ export class App {
     for (let todo of todos) {
       if (todo.completed) {
         this.removeTodo(todo);
+      }
+    }
+  }
+
+  subscribe() {
+    this.sails.on('todo', this.serverUpdate.bind(this));
+  }
+
+  unsubscribe() {
+    this.sails.off('todo');
+    debugger;
+  }
+
+  serverUpdate(message) {
+    if (message.verb === 'created') {
+      this.todos.push(new Todo(message.data));
+    } else if (message.verb === 'updated') {
+      let i;
+      for (i = 0; i < this.todos.length; i++) {
+        let todo = this.todos[i];
+        if (todo.id === message.id) {
+          todo.data = message.data;
+          break;
+        }
+      }
+    } else if (message.verb === 'destroyed') {
+      let i;
+      for (i = 0; i < this.todos.length; i++) {
+        let todo = this.todos[i];
+        if (todo.id === message.id) {
+          this.todos.splice(i, 1);
+          break;
+        }
       }
     }
   }
