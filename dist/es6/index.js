@@ -9,7 +9,7 @@ import 'sails.io.js';
 let io = window.io;
 io.sails.autoConnect = false;
 
-export function configure(aurelia, configCallback) {
+export function configure(config, configCallback) {
 
   let sails = new SailsSocketClient();
 
@@ -19,5 +19,5 @@ export function configure(aurelia, configCallback) {
 
   sails.setSocket(io.sails.connect());
 
-  aurelia.container.registerInstance(SailsSocketClient, sails);
+  config.instance(SailsSocketClient, sails);
 }

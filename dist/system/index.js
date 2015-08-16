@@ -3,7 +3,7 @@ System.register(['./sails-socket-client', 'sails.io.js', './interceptors'], func
 
   _export('configure', configure);
 
-  function configure(aurelia, configCallback) {
+  function configure(config, configCallback) {
 
     var sails = new SailsSocketClient();
 
@@ -13,7 +13,7 @@ System.register(['./sails-socket-client', 'sails.io.js', './interceptors'], func
 
     sails.setSocket(io.sails.connect());
 
-    aurelia.container.registerInstance(SailsSocketClient, sails);
+    config.instance(SailsSocketClient, sails);
   }
 
   return {

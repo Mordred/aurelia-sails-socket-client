@@ -3,7 +3,7 @@ System.register(['core-js', 'aurelia-framework'], function (_export) {
 
   return {
     setters: [function (_coreJs) {
-      core = _coreJs['default'];
+      core = _coreJs;
     }, function (_aureliaFramework) {
       LogManager = _aureliaFramework.LogManager;
     }],

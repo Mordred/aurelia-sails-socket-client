@@ -140,6 +140,16 @@ System.register(['core-js', './headers', './request-builder', './socket-request-
           return this.createRequest(url).asPost().withContent(content).send();
         };
 
+        SailsSocketClient.prototype.on = function on(eventName, fn) {
+          this.socket.on(eventName, fn);
+          return this;
+        };
+
+        SailsSocketClient.prototype.off = function off(eventName, fn) {
+          this.socket.off(eventName, fn);
+          return this;
+        };
+
         return SailsSocketClient;
       })();
 

@@ -230,4 +230,32 @@ export class SailsSocketClient {
     return this.createRequest(url).asPost().withContent(content).send();
   }
 
+  /**
+   * Bind event to the socket.
+   *
+   * @chainable
+   * @method on
+   * @param {String} eventName Event name
+   * @param {Function} fn Event handler function
+   * @return {SailsSocketClient}
+   */
+  on(eventName, fn) {
+    this.socket.on(eventName, fn);
+    return this;
+  }
+
+  /**
+   * Unbind event from the socket.
+   *
+   * @chainable
+   * @method off
+   * @param {String} eventName Event name
+   * @param {Function} fn Event handler function
+   * @return {SailsSocketClient}
+   */
+  off(eventName, fn) {
+    this.socket.off(eventName, fn);
+    return this;
+  }
+
 }

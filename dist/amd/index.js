@@ -14,7 +14,7 @@ define(['exports', './sails-socket-client', 'sails.io.js', './interceptors'], fu
   var io = window.io;
   io.sails.autoConnect = false;
 
-  function configure(aurelia, configCallback) {
+  function configure(config, configCallback) {
 
     var sails = new _sailsSocketClient.SailsSocketClient();
 
@@ -24,6 +24,6 @@ define(['exports', './sails-socket-client', 'sails.io.js', './interceptors'], fu
 
     sails.setSocket(io.sails.connect());
 
-    aurelia.container.registerInstance(_sailsSocketClient.SailsSocketClient, sails);
+    config.instance(_sailsSocketClient.SailsSocketClient, sails);
   }
 });

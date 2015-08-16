@@ -1,13 +1,9 @@
 define(['exports', 'core-js', 'aurelia-framework'], function (exports, _coreJs, _aureliaFramework) {
   'use strict';
 
-  var _interopRequire = function (obj) { return obj && obj.__esModule ? obj['default'] : obj; };
-
   var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
 
   exports.__esModule = true;
-
-  var _core = _interopRequire(_coreJs);
 
   var CSRFInterceptor = (function () {
     function CSRFInterceptor(url, client, token) {

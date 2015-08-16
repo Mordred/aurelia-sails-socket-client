@@ -1,3 +1,16 @@
+### 0.6.0 (2015-08-16)
+
+
+#### Bug Fixes
+
+* **sails-socket-client:** Use correct import for core-js ([e5fb7701](http://github.com/Mordred/aurelia-sails-socket-client/commit/e5fb77011b0c5562a096f0aa8473eac0d4d5e810))
+
+
+#### Features
+
+* **events:** Add bind and unbind to Sails resource events. ([87f1d56c](http://github.com/Mordred/aurelia-sails-socket-client/commit/87f1d56c29de7d66e6fe0a9e7a3e61587f18d0aa))
+
+
 ### 0.5.0 (2015-08-10)
 
 

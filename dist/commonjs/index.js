@@ -20,7 +20,7 @@ _defaults(exports, _interopRequireWildcard(_interceptors));
 var io = window.io;
 io.sails.autoConnect = false;
 
-function configure(aurelia, configCallback) {
+function configure(config, configCallback) {
 
   var sails = new _SailsSocketClient.SailsSocketClient();
 
@@ -30,5 +30,5 @@ function configure(aurelia, configCallback) {
 
   sails.setSocket(io.sails.connect());
 
-  aurelia.container.registerInstance(_SailsSocketClient.SailsSocketClient, sails);
+  config.instance(_SailsSocketClient.SailsSocketClient, sails);
 }

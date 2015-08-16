@@ -6,9 +6,9 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
 
 exports.__esModule = true;
 
-var _core = require('core-js');
+var _import = require('core-js');
 
-var _core2 = _interopRequireWildcard(_core);
+var core = _interopRequireWildcard(_import);
 
 var _LogManager = require('aurelia-framework');
 
