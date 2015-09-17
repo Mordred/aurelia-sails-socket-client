@@ -9,7 +9,7 @@ System.config({
 
 System.config({
   "map": {
-    "aurelia-path": "github:aurelia/path@0.8.1",
+    "aurelia-path": "github:aurelia/path@0.9.0",
     "core-js": "github:zloirock/core-js@1.0.1",
     "sails.io.js": "github:balderdashy/sails.io.js@0.11.5",
     "traceur": "github:jmcriffey/bower-traceur@0.0.87",
