@@ -151,11 +151,11 @@ export class SailsSocketClient {
    *
    * @method delete
    * @param {String} url The target URL.
-   * @param {object|undefined} params Params for the URL.
+   * @param {object|undefined} content Params for the URL.
    * @return {Promise} A cancellable promise object.
    */
-  delete(url, params){
-    return this.createRequest(url).asDelete().withParams(params).send();
+  delete(url, content){
+    return this.createRequest(url).asDelete().withContent(content).send();
   }
 
   /**
@@ -163,11 +163,11 @@ export class SailsSocketClient {
    *
    * @method get
    * @param {String} url The target URL.
-   * @param {object|undefined} params Params for the URL.
+   * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  get(url, params){
-    return this.createRequest(url).asGet().withParams(params).send();
+  get(url, content){
+    return this.createRequest(url).asGet().withContent(content).send();
   }
 
   /**
@@ -175,11 +175,11 @@ export class SailsSocketClient {
    *
    * @method head
    * @param {String} url The target URL.
-   * @param {object|undefined} params Params for the URL.
+   * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  head(url, params){
-    return this.createRequest(url).asHead().withParams(params).send();
+  head(url, content){
+    return this.createRequest(url).asHead().withContent(content).send();
   }
 
   /**
@@ -187,11 +187,11 @@ export class SailsSocketClient {
    *
    * @method options
    * @param {String} url The target URL.
-   * @param {object|undefined} params Params for the URL.
+   * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  options(url, params){
-    return this.createRequest(url).asOptions().withParams(params).send();
+  options(url, content){
+    return this.createRequest(url).asOptions().withContent(content).send();
   }
 
   /**
@@ -199,7 +199,7 @@ export class SailsSocketClient {
    *
    * @method put
    * @param {String} url The target URL.
-   * @param {Object} url The request payload.
+   * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
   put(url, content){
@@ -211,7 +211,7 @@ export class SailsSocketClient {
    *
    * @method patch
    * @param {String} url The target URL.
-   * @param {Object} url The request payload.
+   * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
   patch(url, content){
@@ -223,7 +223,7 @@ export class SailsSocketClient {
    *
    * @method post
    * @param {String} url The target URL.
-   * @param {Object} url The request payload.
+   * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
   post(url, content){

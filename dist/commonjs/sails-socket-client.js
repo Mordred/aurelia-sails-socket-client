@@ -111,20 +111,20 @@ var SailsSocketClient = (function () {
     return promise;
   };
 
-  SailsSocketClient.prototype['delete'] = function _delete(url, params) {
-    return this.createRequest(url).asDelete().withParams(params).send();
+  SailsSocketClient.prototype['delete'] = function _delete(url, content) {
+    return this.createRequest(url).asDelete().withContent(content).send();
   };
 
-  SailsSocketClient.prototype.get = function get(url, params) {
-    return this.createRequest(url).asGet().withParams(params).send();
+  SailsSocketClient.prototype.get = function get(url, content) {
+    return this.createRequest(url).asGet().withContent(content).send();
   };
 
-  SailsSocketClient.prototype.head = function head(url, params) {
-    return this.createRequest(url).asHead().withParams(params).send();
+  SailsSocketClient.prototype.head = function head(url, content) {
+    return this.createRequest(url).asHead().withContent(content).send();
   };
 
-  SailsSocketClient.prototype.options = function options(url, params) {
-    return this.createRequest(url).asOptions().withParams(params).send();
+  SailsSocketClient.prototype.options = function options(url, content) {
+    return this.createRequest(url).asOptions().withContent(content).send();
   };
 
   SailsSocketClient.prototype.put = function put(url, content) {

@@ -1,3 +1,18 @@
+### 0.7.0 (2015-09-17)
+
+
+#### Breaking Changes
+
+* This is a breaking change, because methods `get`, `delete`, `options` and
+`head` on the client now set content instead of params, so that data are not set
+to query string in the URL. When parsing query string in the Sails,
+nested objects are not properly decoded to JS. This change should allow queries like
+`sails.get('users', { username: { contains: 'example' }})` to be run correctly against
+blueprints.
+
+ ([550d75b0](http://github.com/Mordred/aurelia-sails-socket-client/commit/550d75b036946c261884ac6f256552ad3ac87f42))
+
+
 ### 0.6.0 (2015-08-16)
 
 
