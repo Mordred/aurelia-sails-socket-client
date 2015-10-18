@@ -1,5 +1,5 @@
-System.register(['core-js', './headers', './request-builder', './socket-request-message'], function (_export) {
-  var core, Headers, RequestBuilder, SocketRequestMessage, createSocketRequestMessageProcessor, _classCallCheck, SailsSocketClient;
+System.register(['core-js', 'aurelia-pal', './headers', './request-builder', './socket-request-message'], function (_export) {
+  var core, DOM, Headers, RequestBuilder, SocketRequestMessage, createSocketRequestMessageProcessor, _classCallCheck, SailsSocketClient;
 
   function trackRequestStart(client, processor) {
     client.pendingRequests.push(processor);
@@ -13,7 +13,7 @@ System.register(['core-js', './headers', './request-builder', './socket-request-
     client.isRequesting = client.pendingRequests.length > 0;
 
     if (!client.isRequesting) {
-      var evt = new window.CustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
+      var evt = new DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
       setTimeout(function () {
         return document.dispatchEvent(evt);
       }, 1);
@@ -23,6 +23,8 @@ System.register(['core-js', './headers', './request-builder', './socket-request-
   return {
     setters: [function (_coreJs) {
       core = _coreJs['default'];
+    }, function (_aureliaPal) {
+      DOM = _aureliaPal.DOM;
     }, function (_headers) {
       Headers = _headers.Headers;
     }, function (_requestBuilder) {

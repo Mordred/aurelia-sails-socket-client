@@ -10,6 +10,8 @@ var _core = require('core-js');
 
 var _core2 = _interopRequireWildcard(_core);
 
+var _DOM = require('aurelia-pal');
+
 var _Headers = require('./headers');
 
 var _RequestBuilder = require('./request-builder');
@@ -28,7 +30,7 @@ function trackRequestEnd(client, processor) {
   client.isRequesting = client.pendingRequests.length > 0;
 
   if (!client.isRequesting) {
-    var evt = new window.CustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
+    var evt = new _DOM.DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
     setTimeout(function () {
       return document.dispatchEvent(evt);
     }, 1);

@@ -1,3 +1,11 @@
+## 0.8.0 (2015-10-18)
+
+
+#### Features
+
+* **all:** Update to use PAL ([1d42e977](http://github.com/Mordred/aurelia-sails-socket-client/commit/1d42e977ac7ac0566149aa98ca93d1fea970c416))
+
+
 ### 0.7.0 (2015-09-17)
 
 

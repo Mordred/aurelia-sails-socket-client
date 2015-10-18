@@ -1,5 +1,5 @@
-System.register(['./sails-socket-client', 'sails.io.js', './interceptors'], function (_export) {
-  var SailsSocketClient, io;
+System.register(['aurelia-pal', './sails-socket-client', 'sails.io.js', './interceptors'], function (_export) {
+  var PLATFORM, SailsSocketClient, io;
 
   _export('configure', configure);
 
@@ -17,7 +17,9 @@ System.register(['./sails-socket-client', 'sails.io.js', './interceptors'], func
   }
 
   return {
-    setters: [function (_sailsSocketClient) {
+    setters: [function (_aureliaPal) {
+      PLATFORM = _aureliaPal.PLATFORM;
+    }, function (_sailsSocketClient) {
       SailsSocketClient = _sailsSocketClient.SailsSocketClient;
 
       _export('SailsSocketClient', _sailsSocketClient.SailsSocketClient);
@@ -29,7 +31,7 @@ System.register(['./sails-socket-client', 'sails.io.js', './interceptors'], func
     execute: function () {
       'use strict';
 
-      io = window.io;
+      io = PLATFORM.global.io;
 
       io.sails.autoConnect = false;
     }

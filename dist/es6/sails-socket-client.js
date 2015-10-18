@@ -1,5 +1,6 @@
 /* jshint esnext:true */
 import core from 'core-js';
+import {DOM} from 'aurelia-pal';
 
 import { Headers } from './headers';
 import { RequestBuilder } from './request-builder';
@@ -17,7 +18,7 @@ function trackRequestEnd(client, processor) {
   client.isRequesting = client.pendingRequests.length > 0;
 
   if (!client.isRequesting) {
-    var evt = new window.CustomEvent('aurelia-sails-socket-client-requests-drained', {bubbles: true, cancelable: true});
+    var evt = new DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', {bubbles: true, cancelable: true});
     setTimeout(() => document.dispatchEvent(evt), 1);
   }
 }

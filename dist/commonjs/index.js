@@ -7,6 +7,8 @@ var _defaults = function (obj, defaults) { var keys = Object.getOwnPropertyNames
 exports.__esModule = true;
 exports.configure = configure;
 
+var _PLATFORM = require('aurelia-pal');
+
 var _SailsSocketClient = require('./sails-socket-client');
 
 require('sails.io.js');
@@ -17,7 +19,7 @@ var _interceptors = require('./interceptors');
 
 _defaults(exports, _interopRequireWildcard(_interceptors));
 
-var io = window.io;
+var io = _PLATFORM.PLATFORM.global.io;
 io.sails.autoConnect = false;
 
 function configure(config, configCallback) {

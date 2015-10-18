@@ -1,4 +1,4 @@
-define(['exports', 'core-js', './headers', './request-builder', './socket-request-message'], function (exports, _coreJs, _headers, _requestBuilder, _socketRequestMessage) {
+define(['exports', 'core-js', 'aurelia-pal', './headers', './request-builder', './socket-request-message'], function (exports, _coreJs, _aureliaPal, _headers, _requestBuilder, _socketRequestMessage) {
   'use strict';
 
   var _interopRequire = function (obj) { return obj && obj.__esModule ? obj['default'] : obj; };
@@ -21,7 +21,7 @@ define(['exports', 'core-js', './headers', './request-builder', './socket-reques
     client.isRequesting = client.pendingRequests.length > 0;
 
     if (!client.isRequesting) {
-      var evt = new window.CustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
+      var evt = new _aureliaPal.DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
       setTimeout(function () {
         return document.dispatchEvent(evt);
       }, 1);

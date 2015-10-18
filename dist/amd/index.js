@@ -1,4 +1,4 @@
-define(['exports', './sails-socket-client', 'sails.io.js', './interceptors'], function (exports, _sailsSocketClient, _sailsIoJs, _interceptors) {
+define(['exports', 'aurelia-pal', './sails-socket-client', 'sails.io.js', './interceptors'], function (exports, _aureliaPal, _sailsSocketClient, _sailsIoJs, _interceptors) {
   'use strict';
 
   var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
@@ -11,7 +11,7 @@ define(['exports', './sails-socket-client', 'sails.io.js', './interceptors'], fu
 
   _defaults(exports, _interopRequireWildcard(_interceptors));
 
-  var io = window.io;
+  var io = _aureliaPal.PLATFORM.global.io;
   io.sails.autoConnect = false;
 
   function configure(config, configCallback) {
