@@ -1,3 +1,5 @@
+import {PLATFORM} from 'aurelia-pal';
+
 export {SailsSocketClient} from './sails-socket-client';
 export * from './interceptors';
 
@@ -6,7 +8,7 @@ export * from './interceptors';
 import { SailsSocketClient  } from './sails-socket-client';
 import 'sails.io.js';
 
-let io = window.io;
+let io = PLATFORM.global.io;
 io.sails.autoConnect = false;
 
 export function configure(config, configCallback) {
