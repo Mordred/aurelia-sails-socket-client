@@ -21,9 +21,9 @@ define(['exports', 'core-js', 'aurelia-pal', './headers', './request-builder', '
     client.isRequesting = client.pendingRequests.length > 0;
 
     if (!client.isRequesting) {
-      var evt = new _aureliaPal.DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
+      var evt = _aureliaPal.DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
       setTimeout(function () {
-        return document.dispatchEvent(evt);
+        return _aureliaPal.DOM.dispatchEvent(evt);
       }, 1);
     }
   }

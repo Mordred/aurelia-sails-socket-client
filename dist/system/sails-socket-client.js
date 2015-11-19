@@ -13,9 +13,9 @@ System.register(['core-js', 'aurelia-pal', './headers', './request-builder', './
     client.isRequesting = client.pendingRequests.length > 0;
 
     if (!client.isRequesting) {
-      var evt = new DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
+      var evt = DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
       setTimeout(function () {
-        return document.dispatchEvent(evt);
+        return DOM.dispatchEvent(evt);
       }, 1);
     }
   }

@@ -18,8 +18,8 @@ function trackRequestEnd(client, processor) {
   client.isRequesting = client.pendingRequests.length > 0;
 
   if (!client.isRequesting) {
-    var evt = new DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', {bubbles: true, cancelable: true});
-    setTimeout(() => document.dispatchEvent(evt), 1);
+    var evt = DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', {bubbles: true, cancelable: true});
+    setTimeout(() => DOM.dispatchEvent(evt), 1);
   }
 }
 

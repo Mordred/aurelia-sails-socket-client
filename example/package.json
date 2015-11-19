@@ -40,11 +40,11 @@
       "baseURL": "assets"
     },
     "dependencies": {
-      "aurelia-animator-css": "github:aurelia/animator-css@^0.18.0",
-      "aurelia-bootstrapper": "github:aurelia/bootstrapper@^0.19.0",
-      "aurelia-dependency-injection": "github:aurelia/dependency-injection@^0.12.1",
-      "aurelia-framework": "github:aurelia/framework@^0.18.0",
-      "aurelia-router": "github:aurelia/router@^0.14.0",
+      "aurelia-animator-css": "npm:aurelia-animator-css@^1.0.0-beta.1.0.1",
+      "aurelia-bootstrapper": "npm:aurelia-bootstrapper@^1.0.0-beta.1",
+      "aurelia-dependency-injection": "npm:aurelia-dependency-injection@^1.0.0-beta.1",
+      "aurelia-framework": "npm:aurelia-framework@^1.0.0-beta.1.0.1",
+      "aurelia-router": "npm:aurelia-router@^1.0.0-beta.1",
       "aurelia-sails-socket-client": "github:Mordred/aurelia-sails-socket-client@^0.9.0",
       "css": "github:systemjs/plugin-css@^0.1.9",
       "todomvc-app-css": "github:tastejs/todomvc-app-css@^2.0.1",

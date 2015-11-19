@@ -1,3 +1,11 @@
+## 0.10.0 (2015-11-19)
+
+
+#### Bug Fixes
+
+* **all:** Fixed wrong usage of custom event in trackRequestEnd() ([bb349479](http://github.com/Mordred/aurelia-sails-socket-client/commit/bb349479e269b5631db0a4e9b90c2d9a3c5ebff7))
+
+
 ## 0.9.0 (2015-11-12)
 
 
