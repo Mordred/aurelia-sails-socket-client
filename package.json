@@ -19,6 +19,7 @@
     "type": "git",
     "url": "http://github.com/Mordred/aurelia-sails-socket-client"
   },
+  "jspmNodeConversion": false,
   "jspm": {
     "main": "index",
     "format": "amd",
@@ -90,5 +91,11 @@
         }
       ]
     }
+  },
+  "dependencies": {
+    "aurelia-pal": "1.0.0-beta.1",
+    "aurelia-path": "1.0.0-beta.1",
+    "core-js": "1.2.6",
+    "sails.io.js": "0.11.7"
   }
 }
