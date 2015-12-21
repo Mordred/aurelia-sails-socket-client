@@ -31,7 +31,13 @@ export class CSRFInterceptor {
       return message;
     } else {
       return new Promise((resolve, reject) => {
-        this.client.get(this.url).then(response => {
+        let promise;
+        if (this._fetching) {
+          promise = this._fetching;
+        } else {
+          promise = this._fetching = this.client.get(this.url);
+        }
+        promise.then(response => {
           this.token = response.content._csrf;
           this.setCsrfTokenHeader(message);
           resolve(message);
