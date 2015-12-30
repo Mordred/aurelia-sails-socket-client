@@ -14,12 +14,13 @@ System.config({
   },
 
   map: {
+    "aurelia-logging": "npm:aurelia-logging@1.0.0-beta.1",
     "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1",
     "aurelia-path": "npm:aurelia-path@1.0.0-beta.1",
     "babel": "npm:babel-core@5.8.25",
     "babel-runtime": "npm:babel-runtime@5.8.25",
     "core-js": "npm:core-js@1.1.4",
-    "sails.io.js": "github:balderdashy/sails.io.js@0.11.5",
+    "sails.io.js": "github:balderdashy/sails.io.js@0.12.0",
     "github:jspm/nodelibs-process@0.1.1": {
       "process": "npm:process@0.10.1"
     },
