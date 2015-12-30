@@ -10,6 +10,7 @@ This library is part of the [Aurelia](http://www.aurelia.io/) platform and conta
 
 ## Dependencies
 
+* [aurelia-logging](https://github.com/aurelia/logging)
 * [aurelia-pal](https://github.com/aurelia/pal)
 * [aurelia-path](https://github.com/aurelia/path)
 * [sails.io.js](https://github.com/balderdashy/sails.io.js)
