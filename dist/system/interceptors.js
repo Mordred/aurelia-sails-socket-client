@@ -1,11 +1,11 @@
-System.register(['core-js', 'aurelia-framework'], function (_export) {
+System.register(['core-js', 'aurelia-logging'], function (_export) {
   var core, LogManager, _classCallCheck, CSRFInterceptor, logger, LoggerInterceptor;
 
   return {
     setters: [function (_coreJs) {
       core = _coreJs;
-    }, function (_aureliaFramework) {
-      LogManager = _aureliaFramework.LogManager;
+    }, function (_aureliaLogging) {
+      LogManager = _aureliaLogging;
     }],
     execute: function () {
       'use strict';
@@ -33,7 +33,13 @@ System.register(['core-js', 'aurelia-framework'], function (_export) {
             return message;
           } else {
             return new Promise(function (resolve, reject) {
-              _this.client.get(_this.url).then(function (response) {
+              var promise = undefined;
+              if (_this._fetching) {
+                promise = _this._fetching;
+              } else {
+                promise = _this._fetching = _this.client.get(_this.url);
+              }
+              promise.then(function (response) {
                 _this.token = response.content._csrf;
                 _this.setCsrfTokenHeader(message);
                 resolve(message);

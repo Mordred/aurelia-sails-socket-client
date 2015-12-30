@@ -1,3 +1,13 @@
+### 0.10.1 (2015-12-30)
+
+
+#### Bug Fixes
+
+* **all:** Fixed wrong usage of custom event in trackRequestEnd() ([bb349479](http://github.com/Mordred/aurelia-sails-socket-client/commit/bb349479e269b5631db0a4e9b90c2d9a3c5ebff7))
+* **dependencies:** Fixed missing aurelia-logging ([3621e105](http://github.com/Mordred/aurelia-sails-socket-client/commit/3621e105f23123973126bb39a67de948e24c9426))
+* **interceptors:** Cache promise when fetching CSRF token ([cca33901](http://github.com/Mordred/aurelia-sails-socket-client/commit/cca339015e4740d415ef0c66fdbd2a52405c39e0))
+
+
 ## 0.10.0 (2015-11-19)
 
 

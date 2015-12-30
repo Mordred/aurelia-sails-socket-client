@@ -10,7 +10,9 @@ var _import = require('core-js');
 
 var core = _interopRequireWildcard(_import);
 
-var _LogManager = require('aurelia-framework');
+var _import2 = require('aurelia-logging');
+
+var LogManager = _interopRequireWildcard(_import2);
 
 var CSRFInterceptor = (function () {
   function CSRFInterceptor(url, client, token) {
@@ -33,7 +35,13 @@ var CSRFInterceptor = (function () {
       return message;
     } else {
       return new Promise(function (resolve, reject) {
-        _this.client.get(_this.url).then(function (response) {
+        var promise = undefined;
+        if (_this._fetching) {
+          promise = _this._fetching;
+        } else {
+          promise = _this._fetching = _this.client.get(_this.url);
+        }
+        promise.then(function (response) {
           _this.token = response.content._csrf;
           _this.setCsrfTokenHeader(message);
           resolve(message);
@@ -52,7 +60,7 @@ var CSRFInterceptor = (function () {
 
 exports.CSRFInterceptor = CSRFInterceptor;
 
-var logger = _LogManager.LogManager.getLogger('sails');
+var logger = LogManager.getLogger('sails');
 
 var LoggerInterceptor = (function () {
   function LoggerInterceptor() {

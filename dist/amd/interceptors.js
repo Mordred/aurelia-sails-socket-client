@@ -1,4 +1,4 @@
-define(['exports', 'core-js', 'aurelia-framework'], function (exports, _coreJs, _aureliaFramework) {
+define(['exports', 'core-js', 'aurelia-logging'], function (exports, _coreJs, _aureliaLogging) {
   'use strict';
 
   var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -26,7 +26,13 @@ define(['exports', 'core-js', 'aurelia-framework'], function (exports, _coreJs, 
         return message;
       } else {
         return new Promise(function (resolve, reject) {
-          _this.client.get(_this.url).then(function (response) {
+          var promise = undefined;
+          if (_this._fetching) {
+            promise = _this._fetching;
+          } else {
+            promise = _this._fetching = _this.client.get(_this.url);
+          }
+          promise.then(function (response) {
             _this.token = response.content._csrf;
             _this.setCsrfTokenHeader(message);
             resolve(message);
@@ -45,7 +51,7 @@ define(['exports', 'core-js', 'aurelia-framework'], function (exports, _coreJs, 
 
   exports.CSRFInterceptor = CSRFInterceptor;
 
-  var logger = _aureliaFramework.LogManager.getLogger('sails');
+  var logger = _aureliaLogging.getLogger('sails');
 
   var LoggerInterceptor = (function () {
     function LoggerInterceptor() {

@@ -25,19 +25,14 @@ System.config({
     "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.0.0-beta.1",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.0.1",
     "aurelia-router": "npm:aurelia-router@1.0.0-beta.1",
-    "aurelia-sails-socket-client": "github:Mordred/aurelia-sails-socket-client@0.10.0",
+    "aurelia-sails-socket-client": "npm:aurelia-sails-socket-client@0.10.1",
     "babel": "npm:babel-core@5.8.34",
     "babel-runtime": "npm:babel-runtime@5.8.34",
     "core-js": "npm:core-js@1.2.6",
     "css": "github:systemjs/plugin-css@0.1.13",
+    "sails.io.js": "github:balderdashy/sails.io.js@0.12.0",
     "todomvc-app-css": "github:tastejs/todomvc-app-css@2.0.1",
     "todomvc-common": "github:tastejs/todomvc-common@1.0.2",
-    "github:Mordred/aurelia-sails-socket-client@0.10.0": {
-      "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1",
-      "aurelia-path": "npm:aurelia-path@1.0.0-beta.1",
-      "core-js": "npm:core-js@1.2.6",
-      "sails.io.js": "github:balderdashy/sails.io.js@0.11.6"
-    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
@@ -138,6 +133,13 @@ System.config({
       "aurelia-path": "npm:aurelia-path@1.0.0-beta.1",
       "aurelia-route-recognizer": "npm:aurelia-route-recognizer@1.0.0-beta.1",
       "core-js": "npm:core-js@1.2.6"
+    },
+    "npm:aurelia-sails-socket-client@0.10.1": {
+      "aurelia-logging": "npm:aurelia-logging@1.0.0-beta.1",
+      "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1",
+      "aurelia-path": "npm:aurelia-path@1.0.0-beta.1",
+      "core-js": "npm:core-js@1.2.6",
+      "sails.io.js": "github:balderdashy/sails.io.js@0.12.0"
     },
     "npm:aurelia-task-queue@1.0.0-beta.1": {
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1"
