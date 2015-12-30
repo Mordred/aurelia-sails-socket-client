@@ -98,9 +98,9 @@ During bootstrapping phase, you can now include the sails socket client plugin:
       .developmentLogging()
       .plugin('aurelia-sails-socket-client', (sails, io) => {
         sails.configure(x => {
-          x.withBaseUri('/api/v1');
+          x.withBaseUrl('/api/v1');
 
-          // Example for CSRFInterceptor
+          // Example for CSRFInterceptor - if you are using Sails CSRF protection
           x.withInterceptor(new CSRFInterceptor('/csrfToken', sails));
           x.withInterceptor(new LoggerInterceptor());
         });
