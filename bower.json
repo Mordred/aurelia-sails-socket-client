@@ -1,6 +1,6 @@
 {
   "name": "aurelia-sails-socket-client",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "A simple, restful, message-based wrapper around sails.io client.",
   "keywords": [
     "aurelia",

@@ -12,7 +12,10 @@ define(['exports', 'aurelia-pal', './sails-socket-client', 'sails.io.js', './int
   _defaults(exports, _interopRequireWildcard(_interceptors));
 
   var io = _aureliaPal.PLATFORM.global.io;
-  io.sails.autoConnect = false;
+
+  if (io) {
+    io.sails.autoConnect = false;
+  }
 
   function configure(config, configCallback) {
 

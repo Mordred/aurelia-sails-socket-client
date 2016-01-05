@@ -20,7 +20,10 @@ var _interceptors = require('./interceptors');
 _defaults(exports, _interopRequireWildcard(_interceptors));
 
 var io = _PLATFORM.PLATFORM.global.io;
-io.sails.autoConnect = false;
+
+if (io) {
+  io.sails.autoConnect = false;
+}
 
 function configure(config, configCallback) {
 

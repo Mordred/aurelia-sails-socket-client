@@ -33,7 +33,9 @@ System.register(['aurelia-pal', './sails-socket-client', 'sails.io.js', './inter
 
       io = PLATFORM.global.io;
 
-      io.sails.autoConnect = false;
+      if (io) {
+        io.sails.autoConnect = false;
+      }
     }
   };
 });

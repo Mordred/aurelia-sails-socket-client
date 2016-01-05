@@ -1,3 +1,11 @@
+### 0.10.2 (2016-01-05)
+
+
+#### Bug Fixes
+
+* **nodejs:** Fixed configuring autoConnect in the NodeJS environment ([92928166](http://github.com/Mordred/aurelia-sails-socket-client/commit/929281662032ee455973083f9785a266504d71d6))
+
+
 ### 0.10.1 (2015-12-30)
 
 
