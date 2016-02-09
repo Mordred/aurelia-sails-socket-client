@@ -21,7 +21,6 @@ var cssFilesToInject = [
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
-
   'jspm_packages/system.src.js',
   'config.js'
 ];

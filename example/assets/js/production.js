@@ -3,7 +3,6 @@ import { CSRFInterceptor, LoggerInterceptor, SailsSocketClient } from 'aurelia-s
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
-    .developmentLogging()
     .plugin('aurelia-animator-css')
     .plugin('aurelia-sails-socket-client', (sails) => {
       sails.configure(x => {
@@ -11,7 +10,6 @@ export function configure(aurelia) {
 
         // Add CSRF token interceptor
         x.withInterceptor(new CSRFInterceptor('/csrfToken', sails));
-        x.withInterceptor(new LoggerInterceptor());
       });
 
     });

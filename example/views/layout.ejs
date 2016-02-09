@@ -33,7 +33,7 @@
     <!--STYLES END-->
   </head>
 
-  <body>
+  <body aurelia-app="js/<%= sails.config.environment %>">
     <%- body %>
 
 
@@ -93,7 +93,7 @@
     <!--SCRIPTS END-->
 
     <script>
-      System.import('js/<%= sails.config.environment %>');
+      System.import('aurelia-bootstrapper');
     </script>
   </body>
 </html>
