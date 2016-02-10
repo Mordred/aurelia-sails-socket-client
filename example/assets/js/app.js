@@ -76,6 +76,11 @@ export class App {
     return true;
   }
 
+  toggleTodo(todo) {
+    todo.completed = !todo.completed;
+    this.saveTodo(todo);
+  }
+
   toggleAll(todos) {
     let todo ;
     let allCompleted = true;
@@ -117,7 +122,6 @@ export class App {
 
   unsubscribe() {
     this.sails.off('todo');
-    debugger;
   }
 
   serverUpdate(message) {
