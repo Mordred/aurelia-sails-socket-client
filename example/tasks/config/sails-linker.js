@@ -51,9 +51,9 @@ module.exports = function(grunt) {
 				appRoot: '.tmp/public'
 			},
 			files: {
-				'.tmp/public/**/*.html': ['.tmp/public/min/production.min.js'],
-				'views/**/*.html': ['.tmp/public/min/production.min.js'],
-				'views/**/*.ejs': ['.tmp/public/min/production.min.js']
+				'.tmp/public/**/*.html': require('../pipeline').jsFilesToInject.concat(['.tmp/public/min/production.min.js']),
+				'views/**/*.html': require('../pipeline').jsFilesToInject.concat(['.tmp/public/min/production.min.js']),
+				'views/**/*.ejs': require('../pipeline').jsFilesToInject.concat(['.tmp/public/min/production.min.js'])
 			}
 		},
 
@@ -66,9 +66,9 @@ module.exports = function(grunt) {
 				relative: true
 			},
 			files: {
-				'.tmp/public/**/*.html': ['.tmp/public/min/production.min.js'],
-				'views/**/*.html': ['.tmp/public/min/production.min.js'],
-				'views/**/*.ejs': ['.tmp/public/min/production.min.js']
+				'.tmp/public/**/*.html': require('../pipeline').jsFilesToInject.concat(['.tmp/public/min/production.min.js']),
+				'views/**/*.html': require('../pipeline').jsFilesToInject.concat(['.tmp/public/min/production.min.js']),
+				'views/**/*.ejs': require('../pipeline').jsFilesToInject.concat(['.tmp/public/min/production.min.js'])
 			}
 		},
 
@@ -180,7 +180,7 @@ module.exports = function(grunt) {
 				appRoot: '.tmp/public'
 			},
 			files: {
-				'views/**/*.jade': ['.tmp/public/min/production.min.js']
+				'views/**/*.jade': require('../pipeline').jsFilesToInject.concat(['.tmp/public/min/production.min.js'])
 			}
 		},
 
@@ -193,7 +193,7 @@ module.exports = function(grunt) {
 				relative: true
 			},
 			files: {
-				'views/**/*.jade': ['.tmp/public/min/production.min.js']
+				'views/**/*.jade': require('../pipeline').jsFilesToInject.concat(['.tmp/public/min/production.min.js'])
 			}
 		},
 
