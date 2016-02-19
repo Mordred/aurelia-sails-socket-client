@@ -21,25 +21,27 @@
   },
   "jspmNodeConversion": false,
   "jspm": {
+    "registry": "npm",
+    "jspmPackage": true,
     "main": "index",
     "format": "amd",
     "directories": {
       "lib": "dist/amd"
     },
     "dependencies": {
-      "aurelia-logging": "npm:aurelia-logging@^1.0.0-beta.1",
-      "aurelia-pal": "npm:aurelia-pal@^1.0.0-beta.1",
-      "aurelia-path": "npm:aurelia-path@^1.0.0-beta.1",
-      "core-js": "npm:core-js@^1.2.6",
-      "sails.io.js": "github:balderdashy/sails.io.js@0.12.0"
+      "aurelia-logging": "^1.0.0-beta.1.1.1",
+      "aurelia-pal": "^1.0.0-beta.1.1.1",
+      "aurelia-path": "^1.0.0-beta.1.1.0",
+      "core-js": "^2.0.3",
+      "sails.io.js": "github:balderdashy/sails.io.js@0.13.5"
     },
     "devDependencies": {
-      "babel": "npm:babel-core@^5.8.24",
-      "babel-runtime": "npm:babel-runtime@^5.8.24",
-      "core-js": "npm:core-js@^1.2.6"
+      "babel": "babel-core@^5.8.24",
+      "babel-runtime": "^5.8.24",
+      "core-js": "^2.0.3"
     },
     "overrides": {
-      "github:balderdashy/sails.io.js@0.12.0": {
+      "github:balderdashy/sails.io.js@0.13.5": {
         "main": "dist/sails.io.js",
         "format": "global"
       }
@@ -98,6 +100,6 @@
     "aurelia-pal": "^1.0.0-beta.1",
     "aurelia-path": "^1.0.0-beta.1",
     "core-js": "^1.2.6",
-    "sails.io.js": "^0.12.0"
+    "sails.io.js": "^0.13.5"
   }
 }
