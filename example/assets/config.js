@@ -25,13 +25,13 @@ System.config({
     "aurelia-dependency-injection": "npm:aurelia-dependency-injection@1.0.0-beta.1.1.3",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.1.2",
     "aurelia-router": "npm:aurelia-router@1.0.0-beta.1.1.1",
-    "aurelia-sails-socket-client": "npm:aurelia-sails-socket-client@0.10.1",
+    "aurelia-sails-socket-client": "npm:aurelia-sails-socket-client@0.11.0",
     "babel": "npm:babel-core@5.8.34",
     "babel-runtime": "npm:babel-runtime@5.8.34",
     "clean-css": "npm:clean-css@3.4.9",
     "core-js": "npm:core-js@2.1.0",
     "css": "github:systemjs/plugin-css@0.1.13",
-    "sails.io.js": "github:balderdashy/sails.io.js@0.12.0",
+    "sails.io.js": "github:balderdashy/sails.io.js@0.13.5",
     "text": "github:systemjs/plugin-text@0.0.4",
     "todomvc-app-css": "github:tastejs/todomvc-app-css@2.0.1",
     "todomvc-common": "github:tastejs/todomvc-common@1.0.2",
@@ -169,12 +169,12 @@ System.config({
       "aurelia-route-recognizer": "npm:aurelia-route-recognizer@1.0.0-beta.1.1.1",
       "core-js": "npm:core-js@2.1.0"
     },
-    "npm:aurelia-sails-socket-client@0.10.1": {
+    "npm:aurelia-sails-socket-client@0.11.0": {
       "aurelia-logging": "npm:aurelia-logging@1.0.0-beta.1.1.1",
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.1.1",
       "aurelia-path": "npm:aurelia-path@1.0.0-beta.1.1.0",
       "core-js": "npm:core-js@2.1.0",
-      "sails.io.js": "github:balderdashy/sails.io.js@0.12.0"
+      "sails.io.js": "github:balderdashy/sails.io.js@0.13.5"
     },
     "npm:aurelia-task-queue@1.0.0-beta.1.1.1": {
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.1.1"

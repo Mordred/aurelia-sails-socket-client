@@ -1,3 +1,20 @@
+## 0.11.0 (2016-02-19)
+
+
+#### Bug Fixes
+
+* **example:**
+  * Forgotten aurelia-bundler to packages.json ([a0f334c1](http://github.com/Mordred/aurelia-sails-socket-client/commit/a0f334c1036596e23e5321c0d4d39673cc87f428))
+  * Fixed changing completed after recent changes in the Aurelia ([2ac1a93b](http://github.com/Mordred/aurelia-sails-socket-client/commit/2ac1a93bd180ac85fae333f076ee2b3084345b63))
+  * Fix running sails in production environment ([68b121dd](http://github.com/Mordred/aurelia-sails-socket-client/commit/68b121dd0cffc3236302cf1e2127adf6ad67ecbd))
+
+
+#### Features
+
+* **all:** Update sails.io.js to 0.13.5 ([776c62f0](http://github.com/Mordred/aurelia-sails-socket-client/commit/776c62f021c5a0025a0c6883f64b497c0711c579))
+* **example:** Add simple bundling example for production ([0de5c0ff](http://github.com/Mordred/aurelia-sails-socket-client/commit/0de5c0ffb0fcbb1fd3cde780c1097649e8f9d1bd))
+
+
 ### 0.10.2 (2016-01-05)
 
 

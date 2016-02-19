@@ -49,7 +49,7 @@
       "aurelia-sails-socket-client": "github:Mordred/aurelia-sails-socket-client@^0.9.0",
       "clean-css": "npm:clean-css@^3.4.9",
       "css": "github:systemjs/plugin-css@^0.1.9",
-      "sails.io.js": "github:balderdashy/sails.io.js@0.12.0",
+      "sails.io.js": "github:balderdashy/sails.io.js@0.13.5",
       "text": "github:systemjs/plugin-text@^0.0.4",
       "todomvc-app-css": "github:tastejs/todomvc-app-css@^2.0.1",
       "todomvc-common": "github:tastejs/todomvc-common@^1.0.2"
@@ -60,7 +60,7 @@
       "core-js": "npm:core-js@^1.1.4"
     },
     "overrides": {
-      "github:balderdashy/sails.io.js@0.12.0": {
+      "github:balderdashy/sails.io.js@0.13.5": {
         "main": "dist/sails.io.js",
         "format": "global"
       }
