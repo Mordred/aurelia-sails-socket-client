@@ -1,4 +1,3 @@
-import * as core from 'core-js';
 import * as LogManager from 'aurelia-logging';
 
 export class CSRFInterceptor {

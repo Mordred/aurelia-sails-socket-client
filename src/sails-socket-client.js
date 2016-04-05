@@ -1,10 +1,8 @@
 /* jshint esnext:true */
-import core from 'core-js';
 import {DOM} from 'aurelia-pal';
 
-import { Headers } from './headers';
 import { RequestBuilder } from './request-builder';
-import { SocketRequestMessage, createSocketRequestMessageProcessor } from './socket-request-message';
+import { createSocketRequestMessageProcessor } from './socket-request-message';
 
 function trackRequestStart(client, processor) {
   client.pendingRequests.push(processor);

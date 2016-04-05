@@ -1,4 +1,3 @@
-import core from 'core-js';
 import { SocketResponseMessage } from './socket-response-message';
 
 export class RequestMessageProcessor {

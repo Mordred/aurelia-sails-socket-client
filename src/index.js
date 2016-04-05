@@ -1,9 +1,8 @@
 import {PLATFORM} from 'aurelia-pal';
 
-export {SailsSocketClient} from './sails-socket-client';
-export * from './interceptors';
-
 import {SailsSocketClient} from './sails-socket-client';
+import {CSRFInterceptor, LoggerInterceptor} from './interceptors';
+
 import 'sails.io.js';
 
 let io = PLATFORM.global.io;
@@ -23,4 +22,11 @@ export function configure(config, configCallback) {
   sails.setSocket(io.sails.connect());
 
   config.instance(SailsSocketClient, sails);
+}
+
+export {
+  configure,
+  SailsSocketClient,
+  CSRFInterceptor,
+  LoggerInterceptor
 }
