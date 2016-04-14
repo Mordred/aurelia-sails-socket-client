@@ -1,1 +1,333 @@
-{"classes":[{"name":"SailsClient","file":"aurelia-sails-socket-client/src/sails-socket-client.js","line":26,"description":"The main sails socket client object.","is_constructor":1,"methods":[{"line":50,"description":"Change socket instance","name":"setSocket","params":[{"name":"socket","description":"A sails socket instance","type":"SailsSocket"}],"chainable":1},{"line":62,"description":"Add new interceptor\n\nNOTE: Interceptors are stored in reverse order. Inner interceptors before outer interceptors.\nThis reversal is needed so that we can build up the interception chain around the\nserver request.","name":"addInterceptor","params":[{"name":"interceptor","description":"A interceptor class","type":"Interceptor"}],"chainable":1},{"line":79,"description":"Configure this SailsClient with default settings to be used by all requests.","name":"configure","params":[{"name":"fn","description":"A function that takes a RequestBuilder as an argument.","type":"Function"}],"chainable":1},{"line":93,"description":"Returns a new RequestBuilder for this SailsClient instance that can be used to build and send socket requests.","name":"createRequest","params":[{"name":"url","description":"The target URL."}],"type":"RequestBuilder"},{"line":110,"description":"Sends a message using the underlying networking stack.","name":"send","params":[{"name":"message","description":"A configured SocketRequestMessage."},{"name":"transformers","description":"A collection of transformers to apply to the socket request.","type":"Array"}],"return":{"description":"A cancellable promise object.","type":"Promise"}},{"line":150,"description":"Sends an DELETE request.","name":"delete","params":[{"name":"url","description":"The target URL.","type":"String"},{"name":"content","description":"Params for the URL.","type":"Object|undefined"}],"return":{"description":"A cancellable promise object.","type":"Promise"}},{"line":162,"description":"Sends an GET request.","name":"get","params":[{"name":"url","description":"The target URL.","type":"String"},{"name":"content","description":"The request payload.","type":"Object|undefined"}],"return":{"description":"A cancellable promise object.","type":"Promise"}},{"line":174,"description":"Sends an HEAD request.","name":"head","params":[{"name":"url","description":"The target URL.","type":"String"},{"name":"content","description":"The request payload.","type":"Object|undefined"}],"return":{"description":"A cancellable promise object.","type":"Promise"}},{"line":186,"description":"Sends an OPTIONS request.","name":"options","params":[{"name":"url","description":"The target URL.","type":"String"},{"name":"content","description":"The request payload.","type":"Object|undefined"}],"return":{"description":"A cancellable promise object.","type":"Promise"}},{"line":198,"description":"Sends an PUT request.","name":"put","params":[{"name":"url","description":"The target URL.","type":"String"},{"name":"content","description":"The request payload.","type":"Object|undefined"}],"return":{"description":"A cancellable promise object.","type":"Promise"}},{"line":210,"description":"Sends an PATCH request.","name":"patch","params":[{"name":"url","description":"The target URL.","type":"String"},{"name":"content","description":"The request payload.","type":"Object|undefined"}],"return":{"description":"A cancellable promise object.","type":"Promise"}},{"line":222,"description":"Sends an POST request.","name":"post","params":[{"name":"url","description":"The target URL.","type":"String"},{"name":"content","description":"The request payload.","type":"Object|undefined"}],"return":{"description":"A cancellable promise object.","type":"Promise"}},{"line":234,"description":"Bind event to the socket.","chainable":1,"name":"on","params":[{"name":"eventName","description":"Event name","type":"String"},{"name":"fn","description":"Event handler function","type":"Function"}],"return":{"description":"","type":"SailsSocketClient"}},{"line":248,"description":"Unbind event from the socket.","chainable":1,"name":"off","params":[{"name":"eventName","description":"Event name","type":"String"},{"name":"fn","description":"Event handler function","type":"Function"}],"return":{"description":"","type":"SailsSocketClient"}}],"properties":[],"events":[]}],"methods":[],"properties":[],"events":[]}
+{
+  "id": 2,
+  "name": "\"aurelia-sails-socket-client\"",
+  "kind": 2,
+  "kindString": "Module",
+  "flags": {},
+  "children": [
+    {
+      "id": 3,
+      "name": "CSRFInterceptor",
+      "kind": 128,
+      "kindString": "Class",
+      "flags": {
+        "isExported": true
+      },
+      "children": [
+        {
+          "id": 4,
+          "name": "constructor",
+          "kind": 512,
+          "kindString": "Constructor",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "tags": [
+              {
+                "tag": "constructor",
+                "text": ""
+              }
+            ]
+          },
+          "signatures": [
+            {
+              "id": 5,
+              "name": "new CSRFInterceptor",
+              "kind": 16384,
+              "kindString": "Constructor signature",
+              "flags": {},
+              "comment": {
+                "tags": [
+                  {
+                    "tag": "constructor",
+                    "text": ""
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 6,
+                  "name": "url",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "comment": {
+                    "shortText": "URL of the sails CSRF getter"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 7,
+                  "name": "client",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "comment": {
+                    "shortText": "Client for getting CSRF from server"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 8,
+                  "name": "token",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "comment": {
+                    "shortText": "Optional token - use when you have prefetched token, e.g. rendered in HTML\n"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "CSRFInterceptor",
+                "id": 3,
+                "moduleName": "\"aurelia-sails-socket-client\""
+              }
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "request",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 10,
+              "name": "request",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Request message interceptor",
+                "returns": "\n"
+              },
+              "parameters": [
+                {
+                  "id": 11,
+                  "name": "message",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "comment": {},
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "setCsrfTokenHeader",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 13,
+              "name": "setCsrfTokenHeader",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 14,
+                  "name": "message",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "kind": 512,
+          "children": [
+            4
+          ]
+        },
+        {
+          "title": "Methods",
+          "kind": 2048,
+          "children": [
+            9,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "LoggerInterceptor",
+      "kind": 128,
+      "kindString": "Class",
+      "flags": {
+        "isExported": true
+      },
+      "children": [
+        {
+          "id": 16,
+          "name": "request",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 17,
+              "name": "request",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 18,
+                  "name": "message",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "name": "response",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 20,
+              "name": "response",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 21,
+                  "name": "response",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "responseError",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 23,
+              "name": "responseError",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 24,
+                  "name": "response",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Methods",
+          "kind": 2048,
+          "children": [
+            16,
+            19,
+            22
+          ]
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "title": "Classes",
+      "kind": 128,
+      "children": [
+        3,
+        15
+      ]
+    }
+  ]
+}

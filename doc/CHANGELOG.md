@@ -1,3 +1,11 @@
+## 0.12.0 (2016-04-14)
+
+
+#### Features
+
+* **all:** Removed core-js dependency and shrink build to one file ([3d33dbac](http://github.com/Mordred/aurelia-sails-socket-client/commit/3d33dbac3cf17f0e0b5481adbfe492e41785f91a))
+
+
 ## 0.11.0 (2016-02-19)
 
 
