@@ -1,4 +1,5 @@
 import * as LogManager from 'aurelia-logging';
+const logger = LogManager.getLogger('sails');
 
 export class CSRFInterceptor {
 
@@ -28,22 +29,21 @@ export class CSRFInterceptor {
     if (this.token) {
       this.setCsrfTokenHeader(message);
       return message;
-    } else {
-      return new Promise((resolve, reject) => {
-        let promise;
-        if (this._fetching) {
-          promise = this._fetching;
-        } else {
-          promise = this._fetching = this.client.get(this.url);
-        }
-        promise.then(response => {
-          this.token = response.content._csrf;
-          this.setCsrfTokenHeader(message);
-          resolve(message);
-        }).catch(reject);
-      });
     }
 
+    return new Promise((resolve, reject) => {
+      let promise;
+      if (this._fetching) {
+        promise = this._fetching;
+      } else {
+        promise = this._fetching = this.client.get(this.url);
+      }
+      promise.then(response => {
+        this.token = response.content._csrf;
+        this.setCsrfTokenHeader(message);
+        resolve(message);
+      }).catch(reject);
+    });
   }
 
   setCsrfTokenHeader(message) {
@@ -52,8 +52,6 @@ export class CSRFInterceptor {
   }
 
 }
-
-var logger = LogManager.getLogger('sails');
 
 export class LoggerInterceptor {
 

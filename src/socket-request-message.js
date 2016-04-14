@@ -1,13 +1,14 @@
-import { join, buildQueryString } from 'aurelia-path';
+import {join, buildQueryString} from 'aurelia-path';
 
-import { Headers } from './headers';
-import { RequestMessageProcessor } from './request-message-processor';
+import {Headers} from './headers';
+import {RequestMessageProcessor} from './request-message-processor';
 
 function buildFullUrl(message) {
+  let url;
+  let qs;
 
-  var url, qs;
   // Message URL starts with / - as absolute URL
-  if (message.url && message.url[0] == '/') {
+  if (message.url && message.url[0] === '/') {
     url = message.url;
   } else {
     url = join(message.baseUrl, message.url);

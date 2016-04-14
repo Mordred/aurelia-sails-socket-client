@@ -12,7 +12,6 @@ if (io) {
 }
 
 export function configure(config, configCallback) {
-
   let sails = new SailsSocketClient();
 
   if (configCallback !== undefined && typeof(configCallback) === 'function') {
@@ -29,4 +28,4 @@ export {
   SailsSocketClient,
   CSRFInterceptor,
   LoggerInterceptor
-}
+};

@@ -1,8 +1,8 @@
 /* jshint esnext:true */
 import {DOM} from 'aurelia-pal';
 
-import { RequestBuilder } from './request-builder';
-import { createSocketRequestMessageProcessor } from './socket-request-message';
+import {RequestBuilder} from './request-builder';
+import {createSocketRequestMessageProcessor} from './socket-request-message';
 
 function trackRequestStart(client, processor) {
   client.pendingRequests.push(processor);
@@ -10,13 +10,13 @@ function trackRequestStart(client, processor) {
 }
 
 function trackRequestEnd(client, processor) {
-  var index = client.pendingRequests.indexOf(processor);
+  let index = client.pendingRequests.indexOf(processor);
 
   client.pendingRequests.splice(index, 1);
   client.isRequesting = client.pendingRequests.length > 0;
 
   if (!client.isRequesting) {
-    var evt = DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', {bubbles: true, cancelable: true});
+    let evt = DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', {bubbles: true, cancelable: true});
     setTimeout(() => DOM.dispatchEvent(evt), 1);
   }
 }
@@ -82,7 +82,7 @@ export class SailsSocketClient {
    * @chainable
    */
   configure(fn) {
-    var builder = new RequestBuilder(this);
+    let builder = new RequestBuilder(this);
     fn(builder);
     this.requestTransformers = builder.transformers;
     return this;
@@ -109,22 +109,26 @@ export class SailsSocketClient {
    * Sends a message using the underlying networking stack.
    *
    * @method send
-   * @param message A configured SocketRequestMessage.
+   * @param requestMessage A configured SocketRequestMessage.
    * @param {Array} transformers A collection of transformers to apply to the socket request.
    * @return {Promise} A cancellable promise object.
    */
-  send(message, transformers){
-    var processor, promise, i, ii, transformPromises = [];
+  send(requestMessage, transformers) {
+    let processor;
+    let promise;
+    let i;
+    let ii;
+    let transformPromises = [];
 
     processor = createSocketRequestMessageProcessor();
     trackRequestStart(this, processor);
 
     transformers = transformers || this.requestTransformers;
 
-    promise = Promise.resolve(message)
+    promise = Promise.resolve(requestMessage)
       .then((message) => {
         // First apply transformers passed to the client.send()
-        for(i = 0, ii = transformers.length; i < ii; ++i){
+        for (i = 0, ii = transformers.length; i < ii; ++i) {
           transformPromises.push(transformers[i](this, processor, message));
         }
 
@@ -135,7 +139,6 @@ export class SailsSocketClient {
           trackRequestEnd(this, processor);
           throw response;
         });
-
       });
 
     promise.abort = promise.cancel = function() {
@@ -153,7 +156,7 @@ export class SailsSocketClient {
    * @param {object|undefined} content Params for the URL.
    * @return {Promise} A cancellable promise object.
    */
-  delete(url, content){
+  delete(url, content) {
     return this.createRequest(url).asDelete().withContent(content).send();
   }
 
@@ -165,7 +168,7 @@ export class SailsSocketClient {
    * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  get(url, content){
+  get(url, content) {
     return this.createRequest(url).asGet().withContent(content).send();
   }
 
@@ -177,7 +180,7 @@ export class SailsSocketClient {
    * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  head(url, content){
+  head(url, content) {
     return this.createRequest(url).asHead().withContent(content).send();
   }
 
@@ -189,7 +192,7 @@ export class SailsSocketClient {
    * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  options(url, content){
+  options(url, content) {
     return this.createRequest(url).asOptions().withContent(content).send();
   }
 
@@ -201,7 +204,7 @@ export class SailsSocketClient {
    * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  put(url, content){
+  put(url, content) {
     return this.createRequest(url).asPut().withContent(content).send();
   }
 
@@ -213,7 +216,7 @@ export class SailsSocketClient {
    * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  patch(url, content){
+  patch(url, content) {
     return this.createRequest(url).asPatch().withContent(content).send();
   }
 
@@ -225,7 +228,7 @@ export class SailsSocketClient {
    * @param {Object|undefined} content The request payload.
    * @return {Promise} A cancellable promise object.
    */
-  post(url, content){
+  post(url, content) {
     return this.createRequest(url).asPost().withContent(content).send();
   }
 
