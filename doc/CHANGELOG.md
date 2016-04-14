@@ -1,3 +1,11 @@
+### 0.12.1 (2016-04-14)
+
+
+#### Bug Fixes
+
+* **package:** Fixed package.json ([b6ec25af](http://github.com/Mordred/aurelia-sails-socket-client/commit/b6ec25af14741d2d5c1fd4678cef0e5540e3e265))
+
+
 ## 0.12.0 (2016-04-14)
 
 
