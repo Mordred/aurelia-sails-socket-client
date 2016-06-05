@@ -30,18 +30,13 @@
       "aurelia-logging": "^1.0.0-beta.1.2.1",
       "aurelia-pal": "^1.0.0-beta.1.2.2",
       "aurelia-path": "^1.0.0-beta.1.2.2",
-      "sails.io.js": "github:balderdashy/sails.io.js@^0.13.8"
+      "sails.io.js": "^0.13.8",
+      "socket.io-client": "^1.4.6"
     },
     "devDependencies": {
       "babel": "babel-core@^5.8.24",
       "babel-runtime": "^5.8.24",
       "core-js": "^2.0.3"
-    },
-    "overrides": {
-      "github:balderdashy/sails.io.js@0.13.8": {
-        "main": "dist/sails.io.js",
-        "format": "global"
-      }
     }
   },
   "devDependencies": {
@@ -114,6 +109,7 @@
     "aurelia-logging": "^1.0.0-beta.1",
     "aurelia-pal": "^1.0.0-beta.1",
     "aurelia-path": "^1.0.0-beta.1",
-    "sails.io.js": "^0.13.8"
+    "sails.io.js": "^0.13.8",
+    "socket.io-client": "^1.4.6"
   }
 }

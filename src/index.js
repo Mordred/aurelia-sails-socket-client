@@ -1,17 +1,11 @@
-import {PLATFORM} from 'aurelia-pal';
-
 import {SailsSocketClient} from './sails-socket-client';
 import {CSRFInterceptor, LoggerInterceptor} from './interceptors';
 
-import 'sails.io.js';
-
-let io = PLATFORM.global.io;
-// There is no io in the NodeJS
-if (io) {
-  io.sails.autoConnect = false;
-}
+import sailsIO from 'sails.io.js';
+import socketIO from 'socket.io-client';
 
 export function configure(config, configCallback) {
+  let io = sailsIO(socketIO);
   let sails = new SailsSocketClient();
 
   if (configCallback !== undefined && typeof(configCallback) === 'function') {

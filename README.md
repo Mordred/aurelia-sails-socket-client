@@ -73,16 +73,6 @@ To run the unit tests, first ensure that you have followed the steps above in or
   karma start
   ```
 
-## Notes
-
-[sails.io.js](https://github.com/balderdashy/sails.io.js) is not prepared for jspm. When you are installing it, use this command:
-
-   ```shell
-   jspm install sails.io.js=github:balderdashy/sails.io.js@0.12.0 -o '{ main: "dist/sails.io.js", format: "global" }'
-   ```
-
-> If you know better way how to include this library, let me know.
-
 ## Example
 
 ### Load the plugin
