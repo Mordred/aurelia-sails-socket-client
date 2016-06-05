@@ -20,7 +20,6 @@
     "url": "http://github.com/Mordred/aurelia-sails-socket-client"
   },
   "jspm": {
-    "jspmNodeConversion": false,
     "registry": "npm",
     "main": "aurelia-sails-socket-client",
     "format": "amd",
@@ -28,10 +27,10 @@
       "lib": "dist/amd"
     },
     "dependencies": {
-      "aurelia-logging": "^1.0.0-beta.1.1.1",
-      "aurelia-pal": "^1.0.0-beta.1.1.1",
-      "aurelia-path": "^1.0.0-beta.1.1.0",
-      "sails.io.js": "github:balderdashy/sails.io.js@0.13.5"
+      "aurelia-logging": "^1.0.0-beta.1.2.1",
+      "aurelia-pal": "^1.0.0-beta.1.2.2",
+      "aurelia-path": "^1.0.0-beta.1.2.2",
+      "sails.io.js": "github:balderdashy/sails.io.js@^0.13.8"
     },
     "devDependencies": {
       "babel": "babel-core@^5.8.24",
@@ -39,7 +38,7 @@
       "core-js": "^2.0.3"
     },
     "overrides": {
-      "github:balderdashy/sails.io.js@0.13.5": {
+      "github:balderdashy/sails.io.js@0.13.8": {
         "main": "dist/sails.io.js",
         "format": "global"
       }
@@ -115,6 +114,6 @@
     "aurelia-logging": "^1.0.0-beta.1",
     "aurelia-pal": "^1.0.0-beta.1",
     "aurelia-path": "^1.0.0-beta.1",
-    "sails.io.js": "^0.13.5"
+    "sails.io.js": "^0.13.8"
   }
 }
