@@ -1,5 +1,4 @@
 import {SailsSocketClient} from './sails-socket-client';
-import {CSRFInterceptor, LoggerInterceptor} from './interceptors';
 
 import sailsIO from 'sails.io.js';
 import socketIO from 'socket.io-client';
@@ -16,10 +15,3 @@ export function configure(config, configCallback) {
 
   config.instance(SailsSocketClient, sails);
 }
-
-export {
-  configure,
-  SailsSocketClient,
-  CSRFInterceptor,
-  LoggerInterceptor
-};
