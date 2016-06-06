@@ -1,3 +1,11 @@
+### 0.13.1 (2016-06-06)
+
+
+#### Bug Fixes
+
+* **autoConnect:** Disable autoconnect ([2f7d43c5](http://github.com/Mordred/aurelia-sails-socket-client/commit/2f7d43c5cbad62fb6bfa6b05e84e188267a5e49f))
+
+
 ## 0.13.0 (2016-06-06)
 
 

@@ -63,6 +63,7 @@ define(['exports', 'aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.j
 
   function configure(config, configCallback) {
     var io = (0, _sailsIo2.default)(_socket2.default);
+    io.sails.autoConnect = false;
     var sails = new SailsSocketClient();
 
     if (configCallback !== undefined && typeof configCallback === 'function') {

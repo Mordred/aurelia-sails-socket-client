@@ -82,6 +82,7 @@ System.register(['aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.js'
 
       function configure(config, configCallback) {
         var io = sailsIO(socketIO);
+        io.sails.autoConnect = false;
         var sails = new SailsSocketClient();
 
         if (configCallback !== undefined && typeof configCallback === 'function') {
