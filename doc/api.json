@@ -6,7 +6,7 @@
   "flags": {},
   "children": [
     {
-      "id": 3,
+      "id": 107,
       "name": "CSRFInterceptor",
       "kind": 128,
       "kindString": "Class",
@@ -15,7 +15,7 @@
       },
       "children": [
         {
-          "id": 4,
+          "id": 108,
           "name": "constructor",
           "kind": 512,
           "kindString": "Constructor",
@@ -32,7 +32,7 @@
           },
           "signatures": [
             {
-              "id": 5,
+              "id": 109,
               "name": "new CSRFInterceptor",
               "kind": 16384,
               "kindString": "Constructor signature",
@@ -47,11 +47,13 @@
               },
               "parameters": [
                 {
-                  "id": 6,
+                  "id": 110,
                   "name": "url",
                   "kind": 32768,
                   "kindString": "Parameter",
-                  "flags": {},
+                  "flags": {
+                    "isOptional": true
+                  },
                   "comment": {
                     "shortText": "URL of the sails CSRF getter"
                   },
@@ -61,11 +63,13 @@
                   }
                 },
                 {
-                  "id": 7,
+                  "id": 111,
                   "name": "client",
                   "kind": 32768,
                   "kindString": "Parameter",
-                  "flags": {},
+                  "flags": {
+                    "isOptional": true
+                  },
                   "comment": {
                     "shortText": "Client for getting CSRF from server"
                   },
@@ -75,11 +79,13 @@
                   }
                 },
                 {
-                  "id": 8,
+                  "id": 112,
                   "name": "token",
                   "kind": 32768,
                   "kindString": "Parameter",
-                  "flags": {},
+                  "flags": {
+                    "isOptional": true
+                  },
                   "comment": {
                     "shortText": "Optional token - use when you have prefetched token, e.g. rendered in HTML\n"
                   },
@@ -92,14 +98,14 @@
               "type": {
                 "type": "reference",
                 "name": "CSRFInterceptor",
-                "id": 3,
+                "id": 107,
                 "moduleName": "\"aurelia-sails-socket-client\""
               }
             }
           ]
         },
         {
-          "id": 9,
+          "id": 113,
           "name": "request",
           "kind": 2048,
           "kindString": "Method",
@@ -108,7 +114,7 @@
           },
           "signatures": [
             {
-              "id": 10,
+              "id": 114,
               "name": "request",
               "kind": 4096,
               "kindString": "Call signature",
@@ -119,11 +125,13 @@
               },
               "parameters": [
                 {
-                  "id": 11,
+                  "id": 115,
                   "name": "message",
                   "kind": 32768,
                   "kindString": "Parameter",
-                  "flags": {},
+                  "flags": {
+                    "isOptional": true
+                  },
                   "comment": {},
                   "type": {
                     "type": "instrinct",
@@ -139,7 +147,7 @@
           ]
         },
         {
-          "id": 12,
+          "id": 116,
           "name": "setCsrfTokenHeader",
           "kind": 2048,
           "kindString": "Method",
@@ -148,18 +156,196 @@
           },
           "signatures": [
             {
-              "id": 13,
+              "id": 117,
               "name": "setCsrfTokenHeader",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
               "parameters": [
                 {
-                  "id": 14,
+                  "id": 118,
                   "name": "message",
                   "kind": 32768,
                   "kindString": "Parameter",
-                  "flags": {},
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "kind": 512,
+          "children": [
+            108
+          ]
+        },
+        {
+          "title": "Methods",
+          "kind": 2048,
+          "children": [
+            113,
+            116
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Headers",
+      "kind": 128,
+      "kindString": "Class",
+      "flags": {
+        "isExported": true
+      },
+      "children": [
+        {
+          "id": 4,
+          "name": "constructor",
+          "kind": 512,
+          "kindString": "Constructor",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 5,
+              "name": "new Headers",
+              "kind": 16384,
+              "kindString": "Constructor signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 6,
+                  "name": "headers",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "Headers",
+                "id": 3,
+                "moduleName": "\"aurelia-sails-socket-client\""
+              }
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "add",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 8,
+              "name": "add",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 9,
+                  "name": "key",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 10,
+                  "name": "value",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "clear",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 15,
+              "name": "clear",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "name": "get",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 12,
+              "name": "get",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 13,
+                  "name": "key",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "any"
@@ -186,14 +372,15 @@
           "title": "Methods",
           "kind": 2048,
           "children": [
-            9,
-            12
+            7,
+            14,
+            11
           ]
         }
       ]
     },
     {
-      "id": 15,
+      "id": 119,
       "name": "LoggerInterceptor",
       "kind": 128,
       "kindString": "Class",
@@ -202,7 +389,7 @@
       },
       "children": [
         {
-          "id": 16,
+          "id": 120,
           "name": "request",
           "kind": 2048,
           "kindString": "Method",
@@ -211,18 +398,20 @@
           },
           "signatures": [
             {
-              "id": 17,
+              "id": 121,
               "name": "request",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
               "parameters": [
                 {
-                  "id": 18,
+                  "id": 122,
                   "name": "message",
                   "kind": 32768,
                   "kindString": "Parameter",
-                  "flags": {},
+                  "flags": {
+                    "isOptional": true
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "any"
@@ -237,7 +426,7 @@
           ]
         },
         {
-          "id": 19,
+          "id": 123,
           "name": "response",
           "kind": 2048,
           "kindString": "Method",
@@ -246,18 +435,20 @@
           },
           "signatures": [
             {
-              "id": 20,
+              "id": 124,
               "name": "response",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
               "parameters": [
                 {
-                  "id": 21,
+                  "id": 125,
                   "name": "response",
                   "kind": 32768,
                   "kindString": "Parameter",
-                  "flags": {},
+                  "flags": {
+                    "isOptional": true
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "any"
@@ -272,7 +463,7 @@
           ]
         },
         {
-          "id": 22,
+          "id": 126,
           "name": "responseError",
           "kind": 2048,
           "kindString": "Method",
@@ -281,18 +472,20 @@
           },
           "signatures": [
             {
-              "id": 23,
+              "id": 127,
               "name": "responseError",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
               "parameters": [
                 {
-                  "id": 24,
+                  "id": 128,
                   "name": "response",
                   "kind": 32768,
                   "kindString": "Parameter",
-                  "flags": {},
+                  "flags": {
+                    "isOptional": true
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "any"
@@ -312,10 +505,1576 @@
           "title": "Methods",
           "kind": 2048,
           "children": [
-            16,
-            19,
+            120,
+            123,
+            126
+          ]
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "name": "RequestBuilder",
+      "kind": 128,
+      "kindString": "Class",
+      "flags": {
+        "isExported": true
+      },
+      "children": [
+        {
+          "id": 42,
+          "name": "constructor",
+          "kind": 512,
+          "kindString": "Constructor",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 43,
+              "name": "new RequestBuilder",
+              "kind": 16384,
+              "kindString": "Constructor signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 44,
+                  "name": "client",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "RequestBuilder",
+                "id": 41,
+                "moduleName": "\"aurelia-sails-socket-client\""
+              }
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "name": "send",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 50,
+              "name": "send",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "name": "addHelper",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isStatic": true,
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 46,
+              "name": "addHelper",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 47,
+                  "name": "name",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 48,
+                  "name": "fn",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "kind": 512,
+          "children": [
+            42
+          ]
+        },
+        {
+          "title": "Methods",
+          "kind": 2048,
+          "children": [
+            49,
+            45
+          ]
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "RequestMessageProcessor",
+      "kind": 128,
+      "kindString": "Class",
+      "flags": {
+        "isExported": true
+      },
+      "children": [
+        {
+          "id": 24,
+          "name": "constructor",
+          "kind": 512,
+          "kindString": "Constructor",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 25,
+              "name": "new RequestMessageProcessor",
+              "kind": 16384,
+              "kindString": "Constructor signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 26,
+                  "name": "transformers",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "RequestMessageProcessor",
+                "id": 23,
+                "moduleName": "\"aurelia-sails-socket-client\""
+              }
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "name": "abort",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 28,
+              "name": "abort",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "name": "process",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 30,
+              "name": "process",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 31,
+                  "name": "client",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 32,
+                  "name": "requestMessage",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "kind": 512,
+          "children": [
+            24
+          ]
+        },
+        {
+          "title": "Methods",
+          "kind": 2048,
+          "children": [
+            27,
+            29
+          ]
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "name": "SailsSocketClient",
+      "kind": 128,
+      "kindString": "Class",
+      "flags": {
+        "isExported": true
+      },
+      "comment": {
+        "shortText": "The main sails socket client object.",
+        "tags": [
+          {
+            "tag": "class",
+            "text": "SailsClient"
+          },
+          {
+            "tag": "constructor",
+            "text": "\n"
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": 52,
+          "name": "constructor",
+          "kind": 512,
+          "kindString": "Constructor",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "tags": [
+              {
+                "tag": "constructor",
+                "text": ""
+              }
+            ]
+          },
+          "signatures": [
+            {
+              "id": 53,
+              "name": "new SailsSocketClient",
+              "kind": 16384,
+              "kindString": "Constructor signature",
+              "flags": {},
+              "comment": {
+                "tags": [
+                  {
+                    "tag": "constructor",
+                    "text": ""
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 54,
+                  "name": "socket",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "shortText": "A sails socket instance\n"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "SailsSocketClient",
+                "id": 51,
+                "moduleName": "\"aurelia-sails-socket-client\""
+              }
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "name": "addInterceptor",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 59,
+              "name": "addInterceptor",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Add new interceptor",
+                "text": "NOTE: Interceptors are stored in reverse order. Inner interceptors before outer interceptors.\nThis reversal is needed so that we can build up the interception chain around the\nserver request.\n",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "addInterceptor"
+                  },
+                  {
+                    "tag": "chainable",
+                    "text": "\n"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 60,
+                  "name": "interceptor",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "A interceptor class"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 61,
+          "name": "configure",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 62,
+              "name": "configure",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Configure this SailsClient with default settings to be used by all requests.",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "configure"
+                  },
+                  {
+                    "tag": "chainable",
+                    "text": "\n"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 63,
+                  "name": "fn",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "A function that takes a RequestBuilder as an argument."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 64,
+          "name": "createRequest",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 65,
+              "name": "createRequest",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Returns a new RequestBuilder for this SailsClient instance that can be used to build and send socket requests.",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "createRequest"
+                  },
+                  {
+                    "tag": "type",
+                    "text": "RequestBuilder\n"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 66,
+                  "name": "url",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The target URL."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 71,
+          "name": "delete",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 72,
+              "name": "delete",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Sends an DELETE request.",
+                "returns": "A cancellable promise object.\n",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "delete"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 73,
+                  "name": "url",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The target URL."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 74,
+                  "name": "content",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "Params for the URL."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 75,
+          "name": "get",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 76,
+              "name": "get",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Sends an GET request.",
+                "returns": "A cancellable promise object.\n",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "get"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 77,
+                  "name": "url",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The target URL."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 78,
+                  "name": "content",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The request payload."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 79,
+          "name": "head",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 80,
+              "name": "head",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Sends an HEAD request.",
+                "returns": "A cancellable promise object.\n",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "head"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 81,
+                  "name": "url",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The target URL."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 82,
+                  "name": "content",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The request payload."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 103,
+          "name": "off",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 104,
+              "name": "off",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Unbind event from the socket.",
+                "returns": "\n",
+                "tags": [
+                  {
+                    "tag": "chainable",
+                    "text": ""
+                  },
+                  {
+                    "tag": "method",
+                    "text": "off"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 105,
+                  "name": "eventName",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "Event name"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 106,
+                  "name": "fn",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "Event handler function"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 99,
+          "name": "on",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 100,
+              "name": "on",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Bind event to the socket.",
+                "returns": "\n",
+                "tags": [
+                  {
+                    "tag": "chainable",
+                    "text": ""
+                  },
+                  {
+                    "tag": "method",
+                    "text": "on"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 101,
+                  "name": "eventName",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "Event name"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 102,
+                  "name": "fn",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "Event handler function"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 83,
+          "name": "options",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 84,
+              "name": "options",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Sends an OPTIONS request.",
+                "returns": "A cancellable promise object.\n",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "options"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 85,
+                  "name": "url",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The target URL."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 86,
+                  "name": "content",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The request payload."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 91,
+          "name": "patch",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 92,
+              "name": "patch",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Sends an PATCH request.",
+                "returns": "A cancellable promise object.\n",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "patch"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 93,
+                  "name": "url",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The target URL."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 94,
+                  "name": "content",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The request payload."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 95,
+          "name": "post",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 96,
+              "name": "post",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Sends an POST request.",
+                "returns": "A cancellable promise object.\n",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "post"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 97,
+                  "name": "url",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The target URL."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 98,
+                  "name": "content",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The request payload."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 87,
+          "name": "put",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 88,
+              "name": "put",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Sends an PUT request.",
+                "returns": "A cancellable promise object.\n",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "put"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 89,
+                  "name": "url",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The target URL."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 90,
+                  "name": "content",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "The request payload."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 67,
+          "name": "send",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 68,
+              "name": "send",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Sends a message using the underlying networking stack.",
+                "returns": "A cancellable promise object.\n",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "send"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 69,
+                  "name": "requestMessage",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "A configured SocketRequestMessage."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 70,
+                  "name": "transformers",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "A collection of transformers to apply to the socket request."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "name": "setSocket",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 56,
+              "name": "setSocket",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Change socket instance",
+                "tags": [
+                  {
+                    "tag": "method",
+                    "text": "setSocket"
+                  },
+                  {
+                    "tag": "chainable",
+                    "text": "\n"
+                  }
+                ]
+              },
+              "parameters": [
+                {
+                  "id": 57,
+                  "name": "socket",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "A sails socket instance"
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "kind": 512,
+          "children": [
+            52
+          ]
+        },
+        {
+          "title": "Methods",
+          "kind": 2048,
+          "children": [
+            58,
+            61,
+            64,
+            71,
+            75,
+            79,
+            103,
+            99,
+            83,
+            91,
+            95,
+            87,
+            67,
+            55
+          ]
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "SocketRequestMessage",
+      "kind": 128,
+      "kindString": "Class",
+      "flags": {
+        "isExported": true
+      },
+      "children": [
+        {
+          "id": 34,
+          "name": "constructor",
+          "kind": 512,
+          "kindString": "Constructor",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 35,
+              "name": "new SocketRequestMessage",
+              "kind": 16384,
+              "kindString": "Constructor signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 36,
+                  "name": "method",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 37,
+                  "name": "url",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 38,
+                  "name": "content",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 39,
+                  "name": "headers",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "SocketRequestMessage",
+                "id": 33,
+                "moduleName": "\"aurelia-sails-socket-client\""
+              }
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "name": "options",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "any"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "kind": 512,
+          "children": [
+            34
+          ]
+        },
+        {
+          "title": "Properties",
+          "kind": 1024,
+          "children": [
+            40
+          ]
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "SocketResponseMessage",
+      "kind": 128,
+      "kindString": "Class",
+      "flags": {
+        "isExported": true
+      },
+      "children": [
+        {
+          "id": 17,
+          "name": "constructor",
+          "kind": 512,
+          "kindString": "Constructor",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 18,
+              "name": "new SocketResponseMessage",
+              "kind": 16384,
+              "kindString": "Constructor signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 19,
+                  "name": "requestMessage",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 20,
+                  "name": "body",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                },
+                {
+                  "id": 21,
+                  "name": "JWR",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "any"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "SocketResponseMessage",
+                "id": 16,
+                "moduleName": "\"aurelia-sails-socket-client\""
+              }
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "content",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "any"
+          }
+        }
+      ],
+      "groups": [
+        {
+          "title": "Constructors",
+          "kind": 512,
+          "children": [
+            17
+          ]
+        },
+        {
+          "title": "Properties",
+          "kind": 1024,
+          "children": [
             22
           ]
+        }
+      ]
+    },
+    {
+      "id": 129,
+      "name": "configure",
+      "kind": 64,
+      "kindString": "Function",
+      "flags": {
+        "isExported": true
+      },
+      "signatures": [
+        {
+          "id": 130,
+          "name": "configure",
+          "kind": 4096,
+          "kindString": "Call signature",
+          "flags": {},
+          "parameters": [
+            {
+              "id": 131,
+              "name": "config",
+              "kind": 32768,
+              "kindString": "Parameter",
+              "flags": {
+                "isOptional": true
+              },
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            },
+            {
+              "id": 132,
+              "name": "configCallback",
+              "kind": 32768,
+              "kindString": "Parameter",
+              "flags": {
+                "isOptional": true
+              },
+              "type": {
+                "type": "instrinct",
+                "name": "any"
+              }
+            }
+          ],
+          "type": {
+            "type": "instrinct",
+            "name": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": 133,
+      "name": "createSocketRequestMessageProcessor",
+      "kind": 64,
+      "kindString": "Function",
+      "flags": {
+        "isExported": true
+      },
+      "signatures": [
+        {
+          "id": 134,
+          "name": "createSocketRequestMessageProcessor",
+          "kind": 4096,
+          "kindString": "Call signature",
+          "flags": {},
+          "type": {
+            "type": "instrinct",
+            "name": "any"
+          }
         }
       ]
     }
@@ -325,8 +2084,22 @@
       "title": "Classes",
       "kind": 128,
       "children": [
+        107,
         3,
-        15
+        119,
+        41,
+        23,
+        51,
+        33,
+        16
+      ]
+    },
+    {
+      "title": "Functions",
+      "kind": 64,
+      "children": [
+        129,
+        133
       ]
     }
   ]

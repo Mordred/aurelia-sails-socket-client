@@ -1,3 +1,14 @@
+## 0.13.0 (2016-06-06)
+
+
+#### Bug Fixes
+
+* **build:** Removed unecessary exports ([5272d5bd](http://github.com/Mordred/aurelia-sails-socket-client/commit/5272d5bd73ce39e3c0874391015f663dd1aa787a))
+* **d.ts:** Fixed files ordering ([2df9cf3d](http://github.com/Mordred/aurelia-sails-socket-client/commit/2df9cf3d4379e30ce5e52a53142782bf7ff75dd7))
+* **override:** Fixed need for sails.io.js override ([c27fad3c](http://github.com/Mordred/aurelia-sails-socket-client/commit/c27fad3c31705ecd5388253ae425e7c2889c0c6a))
+* **package:** Fixed package.json ([b6ec25af](http://github.com/Mordred/aurelia-sails-socket-client/commit/b6ec25af14741d2d5c1fd4678cef0e5540e3e265))
+
+
 ### 0.12.1 (2016-04-14)
 
 

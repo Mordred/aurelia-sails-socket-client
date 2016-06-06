@@ -1,14 +1,24 @@
-define(['exports', 'aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.js'], function (exports, _aureliaLogging, _aureliaPath, _aureliaPal) {
+define(['exports', 'aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.js', 'socket.io-client'], function (exports, _aureliaLogging, _aureliaPath, _aureliaPal, _sailsIo, _socket) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.configure = exports.SailsSocketClient = exports.RequestBuilder = exports.SocketRequestMessage = exports.RequestMessageProcessor = exports.SocketResponseMessage = exports.Headers = exports.LoggerInterceptor = exports.CSRFInterceptor = undefined;
-  exports.createSocketRequestMessageProcessor = createSocketRequestMessageProcessor;
+  exports.LoggerInterceptor = exports.CSRFInterceptor = exports.SailsSocketClient = exports.RequestBuilder = exports.SocketRequestMessage = exports.RequestMessageProcessor = exports.SocketResponseMessage = exports.Headers = undefined;
   exports.configure = configure;
+  exports.createSocketRequestMessageProcessor = createSocketRequestMessageProcessor;
 
   var LogManager = _interopRequireWildcard(_aureliaLogging);
+
+  var _sailsIo2 = _interopRequireDefault(_sailsIo);
+
+  var _socket2 = _interopRequireDefault(_socket);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
 
   function _interopRequireWildcard(obj) {
     if (obj && obj.__esModule) {
@@ -51,76 +61,18 @@ define(['exports', 'aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.j
     }
   }
 
-  var logger = LogManager.getLogger('sails');
+  function configure(config, configCallback) {
+    var io = (0, _sailsIo2.default)(_socket2.default);
+    var sails = new SailsSocketClient();
 
-  var CSRFInterceptor = exports.CSRFInterceptor = function () {
-    function CSRFInterceptor(url, client, token) {
-      _classCallCheck(this, CSRFInterceptor);
-
-      this.url = url;
-      this.client = client;
-      this.token = token;
+    if (configCallback !== undefined && typeof configCallback === 'function') {
+      configCallback(sails, io);
     }
 
-    CSRFInterceptor.prototype.request = function request(message) {
-      var _this = this;
+    sails.setSocket(io.sails.connect());
 
-      if (message.method === 'get' || message.url === this.url) {
-        return message;
-      }
-
-      if (this.token) {
-        this.setCsrfTokenHeader(message);
-        return message;
-      }
-
-      return new Promise(function (resolve, reject) {
-        var promise = void 0;
-        if (_this._fetching) {
-          promise = _this._fetching;
-        } else {
-          promise = _this._fetching = _this.client.get(_this.url);
-        }
-        promise.then(function (response) {
-          _this.token = response.content._csrf;
-          _this.setCsrfTokenHeader(message);
-          resolve(message);
-        }).catch(reject);
-      });
-    };
-
-    CSRFInterceptor.prototype.setCsrfTokenHeader = function setCsrfTokenHeader(message) {
-      message.headers.add('X-Csrf-Token', this.token);
-      return message;
-    };
-
-    return CSRFInterceptor;
-  }();
-
-  var LoggerInterceptor = function () {
-    function LoggerInterceptor() {
-      _classCallCheck(this, LoggerInterceptor);
-    }
-
-    LoggerInterceptor.prototype.request = function request(message) {
-      logger.debug('Sending message to sails', message);
-      return message;
-    };
-
-    LoggerInterceptor.prototype.response = function response(_response) {
-      logger.debug('Receiving response from sails', _response);
-      return _response;
-    };
-
-    LoggerInterceptor.prototype.responseError = function responseError(response) {
-      logger.error('There was an error during sails request', response);
-      throw response;
-    };
-
-    return LoggerInterceptor;
-  }();
-
-  exports.LoggerInterceptor = LoggerInterceptor;
+    config.instance(SailsSocketClient, sails);
+  }
 
   var Headers = exports.Headers = function () {
     function Headers() {
@@ -180,16 +132,16 @@ define(['exports', 'aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.j
     };
 
     RequestMessageProcessor.prototype.process = function process(client, requestMessage) {
-      var _this2 = this;
+      var _this = this;
 
       return new Promise(function (resolve, reject) {
-        var transformers = _this2.transformers;
+        var transformers = _this.transformers;
         var promises = [];
         var i = void 0;
         var ii = void 0;
 
         for (i = 0, ii = transformers.length; i < ii; ++i) {
-          promises.push(transformers[i](client, _this2, requestMessage));
+          promises.push(transformers[i](client, _this, requestMessage));
         }
 
         return Promise.all(promises).then(function () {
@@ -455,7 +407,7 @@ define(['exports', 'aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.j
     };
 
     SailsSocketClient.prototype.send = function send(requestMessage, transformers) {
-      var _this3 = this;
+      var _this2 = this;
 
       var processor = void 0;
       var promise = void 0;
@@ -470,14 +422,14 @@ define(['exports', 'aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.j
 
       promise = Promise.resolve(requestMessage).then(function (message) {
         for (i = 0, ii = transformers.length; i < ii; ++i) {
-          transformPromises.push(transformers[i](_this3, processor, message));
+          transformPromises.push(transformers[i](_this2, processor, message));
         }
 
-        return processor.process(_this3, message).then(function (response) {
-          trackRequestEnd(_this3, processor);
+        return processor.process(_this2, message).then(function (response) {
+          trackRequestEnd(_this2, processor);
           return response;
         }).catch(function (response) {
-          trackRequestEnd(_this3, processor);
+          trackRequestEnd(_this2, processor);
           throw response;
         });
       });
@@ -530,26 +482,74 @@ define(['exports', 'aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.j
     return SailsSocketClient;
   }();
 
-  var io = _aureliaPal.PLATFORM.global.io;
+  var logger = LogManager.getLogger('sails');
 
-  if (io) {
-    io.sails.autoConnect = false;
-  }
+  var CSRFInterceptor = exports.CSRFInterceptor = function () {
+    function CSRFInterceptor(url, client, token) {
+      _classCallCheck(this, CSRFInterceptor);
 
-  function configure(config, configCallback) {
-    var sails = new SailsSocketClient();
-
-    if (configCallback !== undefined && typeof configCallback === 'function') {
-      configCallback(sails, io);
+      this.url = url;
+      this.client = client;
+      this.token = token;
     }
 
-    sails.setSocket(io.sails.connect());
+    CSRFInterceptor.prototype.request = function request(message) {
+      var _this3 = this;
 
-    config.instance(SailsSocketClient, sails);
-  }
+      if (message.method === 'get' || message.url === this.url) {
+        return message;
+      }
 
-  exports.configure = configure;
-  exports.SailsSocketClient = SailsSocketClient;
-  exports.CSRFInterceptor = CSRFInterceptor;
+      if (this.token) {
+        this.setCsrfTokenHeader(message);
+        return message;
+      }
+
+      return new Promise(function (resolve, reject) {
+        var promise = void 0;
+        if (_this3._fetching) {
+          promise = _this3._fetching;
+        } else {
+          promise = _this3._fetching = _this3.client.get(_this3.url);
+        }
+        promise.then(function (response) {
+          _this3.token = response.content._csrf;
+          _this3.setCsrfTokenHeader(message);
+          resolve(message);
+        }).catch(reject);
+      });
+    };
+
+    CSRFInterceptor.prototype.setCsrfTokenHeader = function setCsrfTokenHeader(message) {
+      message.headers.add('X-Csrf-Token', this.token);
+      return message;
+    };
+
+    return CSRFInterceptor;
+  }();
+
+  var LoggerInterceptor = function () {
+    function LoggerInterceptor() {
+      _classCallCheck(this, LoggerInterceptor);
+    }
+
+    LoggerInterceptor.prototype.request = function request(message) {
+      logger.debug('Sending message to sails', message);
+      return message;
+    };
+
+    LoggerInterceptor.prototype.response = function response(_response) {
+      logger.debug('Receiving response from sails', _response);
+      return _response;
+    };
+
+    LoggerInterceptor.prototype.responseError = function responseError(response) {
+      logger.error('There was an error during sails request', response);
+      throw response;
+    };
+
+    return LoggerInterceptor;
+  }();
+
   exports.LoggerInterceptor = LoggerInterceptor;
 });

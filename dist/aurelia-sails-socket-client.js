@@ -1,78 +1,21 @@
 import * as LogManager from 'aurelia-logging';
 import {join,buildQueryString} from 'aurelia-path';
-import {DOM,PLATFORM} from 'aurelia-pal';
+import {DOM} from 'aurelia-pal';
 
-const logger = LogManager.getLogger('sails');
+import sailsIO from 'sails.io.js';
+import socketIO from 'socket.io-client';
 
-export class CSRFInterceptor {
+export function configure(config, configCallback) {
+  let io = sailsIO(socketIO);
+  let sails = new SailsSocketClient();
 
-  /**
-   * @constructor
-   * @param url URL of the sails CSRF getter
-   * @param {SailsSocketClient} client Client for getting CSRF from server
-   * @param token Optional token - use when you have prefetched token, e.g. rendered in HTML
-   */
-  constructor(url, client, token) {
-    this.url = url;
-    this.client = client;
-    this.token = token;
+  if (configCallback !== undefined && typeof(configCallback) === 'function') {
+    configCallback(sails, io);
   }
 
-  /**
-   * Request message interceptor
-   *
-   * @param message
-   * @returns {SocketRequestMessage}
-   */
-  request(message) {
-    if (message.method === 'get' || message.url === this.url) {
-      return message;
-    }
+  sails.setSocket(io.sails.connect());
 
-    if (this.token) {
-      this.setCsrfTokenHeader(message);
-      return message;
-    }
-
-    return new Promise((resolve, reject) => {
-      let promise;
-      if (this._fetching) {
-        promise = this._fetching;
-      } else {
-        promise = this._fetching = this.client.get(this.url);
-      }
-      promise.then(response => {
-        this.token = response.content._csrf;
-        this.setCsrfTokenHeader(message);
-        resolve(message);
-      }).catch(reject);
-    });
-  }
-
-  setCsrfTokenHeader(message) {
-    message.headers.add('X-Csrf-Token', this.token);
-    return message;
-  }
-
-}
-
-export class LoggerInterceptor {
-
-  request(message) {
-    logger.debug('Sending message to sails', message);
-    return message;
-  }
-
-  response(response) {
-    logger.debug('Receiving response from sails', response);
-    return response;
-  }
-
-  responseError(response) {
-    logger.error('There was an error during sails request', response);
-    throw response;
-  }
-
+  config.instance(SailsSocketClient, sails);
 }
 
 export class Headers {
@@ -594,29 +537,75 @@ export class SailsSocketClient {
 
 }
 
-import 'sails.io.js';
+const logger = LogManager.getLogger('sails');
 
-let io = PLATFORM.global.io;
-// There is no io in the NodeJS
-if (io) {
-  io.sails.autoConnect = false;
-}
+export class CSRFInterceptor {
 
-export function configure(config, configCallback) {
-  let sails = new SailsSocketClient();
-
-  if (configCallback !== undefined && typeof(configCallback) === 'function') {
-    configCallback(sails, io);
+  /**
+   * @constructor
+   * @param url URL of the sails CSRF getter
+   * @param {SailsSocketClient} client Client for getting CSRF from server
+   * @param token Optional token - use when you have prefetched token, e.g. rendered in HTML
+   */
+  constructor(url, client, token) {
+    this.url = url;
+    this.client = client;
+    this.token = token;
   }
 
-  sails.setSocket(io.sails.connect());
+  /**
+   * Request message interceptor
+   *
+   * @param message
+   * @returns {SocketRequestMessage}
+   */
+  request(message) {
+    if (message.method === 'get' || message.url === this.url) {
+      return message;
+    }
 
-  config.instance(SailsSocketClient, sails);
+    if (this.token) {
+      this.setCsrfTokenHeader(message);
+      return message;
+    }
+
+    return new Promise((resolve, reject) => {
+      let promise;
+      if (this._fetching) {
+        promise = this._fetching;
+      } else {
+        promise = this._fetching = this.client.get(this.url);
+      }
+      promise.then(response => {
+        this.token = response.content._csrf;
+        this.setCsrfTokenHeader(message);
+        resolve(message);
+      }).catch(reject);
+    });
+  }
+
+  setCsrfTokenHeader(message) {
+    message.headers.add('X-Csrf-Token', this.token);
+    return message;
+  }
+
 }
 
-export {
-  configure,
-  SailsSocketClient,
-  CSRFInterceptor,
-  LoggerInterceptor
-};
+export class LoggerInterceptor {
+
+  request(message) {
+    logger.debug('Sending message to sails', message);
+    return message;
+  }
+
+  response(response) {
+    logger.debug('Receiving response from sails', response);
+    return response;
+  }
+
+  responseError(response) {
+    logger.error('There was an error during sails request', response);
+    throw response;
+  }
+
+}
