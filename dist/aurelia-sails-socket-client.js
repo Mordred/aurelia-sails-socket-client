@@ -1,6 +1,5 @@
 import * as LogManager from 'aurelia-logging';
 import {join,buildQueryString} from 'aurelia-path';
-import {DOM} from 'aurelia-pal';
 
 import sailsIO from 'sails.io.js';
 import socketIO from 'socket.io-client';
@@ -290,11 +289,6 @@ function trackRequestEnd(client, processor) {
 
   client.pendingRequests.splice(index, 1);
   client.isRequesting = client.pendingRequests.length > 0;
-
-  if (!client.isRequesting) {
-    let evt = DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', {bubbles: true, cancelable: true});
-    setTimeout(() => DOM.dispatchEvent(evt), 1);
-  }
 }
 
 /**

@@ -16,8 +16,6 @@ var LogManager = _interopRequireWildcard(_aureliaLogging);
 
 var _aureliaPath = require('aurelia-path');
 
-var _aureliaPal = require('aurelia-pal');
-
 var _sailsIo = require('sails.io.js');
 
 var _sailsIo2 = _interopRequireDefault(_sailsIo);
@@ -48,7 +46,7 @@ function configure(config, configCallback) {
 
 var Headers = exports.Headers = function () {
   function Headers() {
-    var headers = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    var headers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     _classCallCheck(this, Headers);
 
@@ -326,15 +324,6 @@ function trackRequestEnd(client, processor) {
 
   client.pendingRequests.splice(index, 1);
   client.isRequesting = client.pendingRequests.length > 0;
-
-  if (!client.isRequesting) {
-    (function () {
-      var evt = _aureliaPal.DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
-      setTimeout(function () {
-        return _aureliaPal.DOM.dispatchEvent(evt);
-      }, 1);
-    })();
-  }
 }
 
 var SailsSocketClient = exports.SailsSocketClient = function () {

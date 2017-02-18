@@ -1,3 +1,21 @@
+## 0.14.0 (2017-02-18)
+
+
+#### Features
+
+* **dependencies:** Remove aurelia-pal dependency ([fca28e7c](http://github.com/Mordred/aurelia-sails-socket-client/commit/fca28e7c8b823ff535071424554099b42cd5ac34))
+* **karma:** Upgrade karma dependency ([8e36b5e8](http://github.com/Mordred/aurelia-sails-socket-client/commit/8e36b5e80f5ab40bd0eebb8e6cd61bb0730da97c))
+
+
+#### Breaking Changes
+
+* DOM event 'aurelia-sails-socket-client-requests-drained' was removed.
+Because of this event we had to import aurelia-pal dependency.
+If you need this event, you can easily implement it using interceptor.
+
+ ([fca28e7c](http://github.com/Mordred/aurelia-sails-socket-client/commit/fca28e7c8b823ff535071424554099b42cd5ac34))
+
+
 ### 0.13.1 (2016-06-06)
 
 

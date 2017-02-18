@@ -13,7 +13,7 @@ gulp.task('doc-generate', function(){
       name: paths.packageName + '-docs',
       mode: 'modules',
       excludeExternals: true,
-      ignoreCompilerErrors: false,
+      ignoreCompilerErrors: true,
       version: true
     }));
 });

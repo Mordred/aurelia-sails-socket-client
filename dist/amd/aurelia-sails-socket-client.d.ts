@@ -4,9 +4,6 @@ declare module 'aurelia-sails-socket-client' {
     join,
     buildQueryString
   } from 'aurelia-path';
-  import {
-    DOM
-  } from 'aurelia-pal';
   import sailsIO from 'sails.io.js';
   import socketIO from 'socket.io-client';
   export function configure(config?: any, configCallback?: any): any;

@@ -1,13 +1,31 @@
 'use strict';
 
-System.register(['aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.js', 'socket.io-client'], function (_export, _context) {
-  var LogManager, join, buildQueryString, DOM, sailsIO, socketIO, _createClass, Headers, SocketResponseMessage, RequestMessageProcessor, SocketRequestMessage, RequestBuilder, SailsSocketClient, logger, CSRFInterceptor, LoggerInterceptor;
+System.register(['aurelia-logging', 'aurelia-path', 'sails.io.js', 'socket.io-client'], function (_export, _context) {
+  "use strict";
+
+  var LogManager, join, buildQueryString, sailsIO, socketIO, _createClass, Headers, SocketResponseMessage, RequestMessageProcessor, SocketRequestMessage, RequestBuilder, SailsSocketClient, logger, CSRFInterceptor, LoggerInterceptor;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
   }
+
+  function configure(config, configCallback) {
+    var io = sailsIO(socketIO);
+    io.sails.autoConnect = false;
+    var sails = new SailsSocketClient();
+
+    if (configCallback !== undefined && typeof configCallback === 'function') {
+      configCallback(sails, io);
+    }
+
+    sails.setSocket(io.sails.connect());
+
+    config.instance(SailsSocketClient, sails);
+  }
+
+  _export('configure', configure);
 
   function buildFullUrl(message) {
     var url = void 0;
@@ -27,6 +45,12 @@ System.register(['aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.js'
     return url;
   }
 
+  function createSocketRequestMessageProcessor() {
+    return new RequestMessageProcessor([]);
+  }
+
+  _export('createSocketRequestMessageProcessor', createSocketRequestMessageProcessor);
+
   function trackRequestStart(client, processor) {
     client.pendingRequests.push(processor);
     client.isRequesting = true;
@@ -37,15 +61,6 @@ System.register(['aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.js'
 
     client.pendingRequests.splice(index, 1);
     client.isRequesting = client.pendingRequests.length > 0;
-
-    if (!client.isRequesting) {
-      (function () {
-        var evt = DOM.createCustomEvent('aurelia-sails-socket-client-requests-drained', { bubbles: true, cancelable: true });
-        setTimeout(function () {
-          return DOM.dispatchEvent(evt);
-        }, 1);
-      })();
-    }
   }
 
   return {
@@ -54,8 +69,6 @@ System.register(['aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.js'
     }, function (_aureliaPath) {
       join = _aureliaPath.join;
       buildQueryString = _aureliaPath.buildQueryString;
-    }, function (_aureliaPal) {
-      DOM = _aureliaPal.DOM;
     }, function (_sailsIoJs) {
       sailsIO = _sailsIoJs.default;
     }, function (_socketIoClient) {
@@ -80,25 +93,9 @@ System.register(['aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.js'
         };
       }();
 
-      function configure(config, configCallback) {
-        var io = sailsIO(socketIO);
-        io.sails.autoConnect = false;
-        var sails = new SailsSocketClient();
-
-        if (configCallback !== undefined && typeof configCallback === 'function') {
-          configCallback(sails, io);
-        }
-
-        sails.setSocket(io.sails.connect());
-
-        config.instance(SailsSocketClient, sails);
-      }
-
-      _export('configure', configure);
-
       _export('Headers', Headers = function () {
         function Headers() {
-          var headers = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+          var headers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
           _classCallCheck(this, Headers);
 
@@ -243,12 +240,6 @@ System.register(['aurelia-logging', 'aurelia-path', 'aurelia-pal', 'sails.io.js'
       }());
 
       _export('SocketRequestMessage', SocketRequestMessage);
-
-      function createSocketRequestMessageProcessor() {
-        return new RequestMessageProcessor([]);
-      }
-
-      _export('createSocketRequestMessageProcessor', createSocketRequestMessageProcessor);
 
       _export('RequestBuilder', RequestBuilder = function () {
         function RequestBuilder(client) {
