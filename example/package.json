@@ -20,14 +20,15 @@
     "grunt-sails-linker": "~0.9.5",
     "grunt-sync": "~0.0.4",
     "include-all": "~0.1.3",
-    "jspm": "0.16.10",
+    "jspm": "0.16.53",
     "rc": "~0.5.0",
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0"
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "jspm install"
   },
   "main": "app.js",
   "repository": {
@@ -46,10 +47,9 @@
       "aurelia-dependency-injection": "npm:aurelia-dependency-injection@^1.0.0-beta.1.1.3",
       "aurelia-framework": "npm:aurelia-framework@^1.0.0-beta.1.1.2",
       "aurelia-router": "npm:aurelia-router@^1.0.0-beta.1.1.1",
-      "aurelia-sails-socket-client": "github:Mordred/aurelia-sails-socket-client@^0.9.0",
+      "aurelia-sails-socket-client": "github:Mordred/aurelia-sails-socket-client@^0.14.0",
       "clean-css": "npm:clean-css@^3.4.9",
       "css": "github:systemjs/plugin-css@^0.1.9",
-      "sails.io.js": "github:balderdashy/sails.io.js@0.13.5",
       "text": "github:systemjs/plugin-text@^0.0.4",
       "todomvc-app-css": "github:tastejs/todomvc-app-css@^2.0.1",
       "todomvc-common": "github:tastejs/todomvc-common@^1.0.2"
@@ -58,12 +58,6 @@
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
       "core-js": "npm:core-js@^1.1.4"
-    },
-    "overrides": {
-      "github:balderdashy/sails.io.js@0.13.5": {
-        "main": "dist/sails.io.js",
-        "format": "global"
-      }
     }
   }
 }
